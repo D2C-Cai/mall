@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: erureka-server
+  profiles:
+    active: dev
+
+---
+
+server:
+  port: 1001
+
+eureka:
+  instance:
+    hostname: 192.168.5.20
+  server:
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 30000
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+spring:
+  profiles: dev
+
+---
+
+spring:
+  profiles: test
+
+---
+
+spring:
+  profiles: prd

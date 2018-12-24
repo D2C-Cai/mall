@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: mall-portal
+  profiles:
+    active: dev
+
+---
+
+server:
+  port: 9001
+
+eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 30
+    lease-renewal-interval-in-seconds: 10
+  client:
+    service-url:
+      defaultZone: http://192.168.5.20:1001/eureka/
+
+spring:
+  profiles: dev
+
+---
+
+spring:
+  profiles: test
+
+---
+
+spring:
+  profiles: prd

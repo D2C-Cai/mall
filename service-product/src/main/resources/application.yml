@@ -1,0 +1,113 @@
+spring:
+  application:
+    name: service-product
+  profiles:
+    active: dev
+
+---
+
+server:
+  port: 8003
+
+eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 30
+    lease-renewal-interval-in-seconds: 10
+  client:
+    service-url:
+      defaultZone: http://192.168.5.20:1001/eureka/
+
+spring:
+  profiles: dev
+
+  # database
+  datasource:
+    master:
+      jdbc-url: jdbc:mysql://192.168.0.139:3306/merchant?useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.jdbc.Driver
+    slave1:
+      jdbc-url: jdbc:mysql://192.168.0.139:3306/merchant?useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.jdbc.Driver
+    slave2:
+      jdbc-url: jdbc:mysql://192.168.0.139:3306/merchant?useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.jdbc.Driver
+
+  # jpa
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+
+  # redis
+  redis:
+    database: 0
+    host: 192.168.0.145
+    port: 6379
+    jedis:
+      pool:
+        max-active: 1000
+        max-idle: 100
+        min-idle: 1
+
+  data:
+    # mongodb
+    mongodb:
+      uri: mongodb://192.168.0.145:27017/merchant
+
+    # elasticsearch
+    elasticsearch:
+      cluster-name: d2cmall-es
+      cluster-nodes: 192.168.0.145:9300
+
+  # rabbitmq
+  rabbitmq:
+    host: 192.168.0.145
+    port: 5672
+    username: guest
+    password: guest
+
+---
+
+spring:
+  profiles: test
+
+---
+
+spring:
+  profiles: prd
+
+######################################################### cluster ######################################################
+
+#  # redis
+#  redis:
+#    database: 0
+#    jedis:
+#      pool:
+#        max-active: 8
+#        max-idle: 8
+#        min-idle: 0
+#    cluster:
+#      nodes:
+#        - 192.168.0.143:7001
+#        - 192.168.0.143:7002
+#        - 192.168.0.143:7003
+#        - 192.168.0.143:7004
+#        - 192.168.0.143:7005
+#        - 192.168.0.143:7006
+
+#  data:
+#  # mongodb
+#    mongodb:
+#      uri: mongodb://192.168.0.143:27017,192.168.0.144:27017,192.168.0.145:27017/merchant
+
+#  # elasticsearch
+#    elasticsearch:
+#      cluster-name: d2cmall-es
+#      cluster-nodes: 192.168.0.143:9300,192.168.0.144:9300,192.168.0.145:9300
+

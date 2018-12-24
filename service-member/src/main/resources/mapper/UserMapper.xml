@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.d2c.member.business.dao.UserMapper">
+    <resultMap id="BaseMap" type="com.d2c.member.business.model.User">
+        <result column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+    </resultMap>
+
+    <select id="findByName" resultMap="BaseMap">
+		select *
+		from m_user
+		where username = #{username}
+		limit 0,1
+	</select>
+
+</mapper>
