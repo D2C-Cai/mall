@@ -36,7 +36,7 @@ public class ProductServiceImpl implements ProductService {
         redisTemplate.opsForValue().set("order_" + sn, product);
         productMongoRepository.save(new ProductMongo(product));
         productSearchRepository.save(new ProductSearch(product));
-        directSender.send(product);
+        //directSender.send(product);
         return product;
     }
 

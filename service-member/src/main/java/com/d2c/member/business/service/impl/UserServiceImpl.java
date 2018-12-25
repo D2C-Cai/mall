@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
         redisTemplate.opsForValue().set("user_" + username, user);
         userMongoRepository.save(new UserMongo(user));
         userSearchRepository.save(new UserSearch(user));
-        directSender.send(user);
+        //directSender.send(user);
         return user;
     }
 

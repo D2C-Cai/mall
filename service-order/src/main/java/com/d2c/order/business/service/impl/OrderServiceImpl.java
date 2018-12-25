@@ -36,7 +36,7 @@ public class OrderServiceImpl implements OrderService {
         redisTemplate.opsForValue().set("order_" + sn, order);
         orderMongoRepository.save(new OrderMongo(order));
         orderSearchRepository.save(new OrderSearch(order));
-        directSender.send(order);
+        //directSender.send(order);
         return order;
     }
 
