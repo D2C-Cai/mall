@@ -9,6 +9,7 @@ spring:
 server:
   port: 9001
 
+# eureka
 eureka:
   instance:
     lease-expiration-duration-in-seconds: 30
@@ -17,6 +18,7 @@ eureka:
     service-url:
       defaultZone: http://192.168.5.20:1001/eureka/
 
+# feign
 feign:
   hystrix:
     enabled: true
@@ -26,6 +28,7 @@ feign:
         connectTimeout: 10000
         readTimeout: 5000
 
+# ribbon
 service-product:
   ribbon:
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.BestAvailableRule
@@ -37,6 +40,16 @@ service-member:
 service-order:
   ribbon:
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.BestAvailableRule
+
+# zuul
+zuul:
+  ignored-services: '*'
+  routes:
+    service-product: /apigateway/product/**
+    service-member: /apigateway/member/**
+    service-order: /apigateway/order/**
+  ignored-patterns: /service-*/**
+  sensitive-headers:
 
 spring:
   profiles: dev
