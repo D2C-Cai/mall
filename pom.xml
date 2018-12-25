@@ -7,6 +7,14 @@
     <groupId>com.d2c</groupId>
     <artifactId>mall</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
+    <modules>
+        <module>erureka-server</module>
+        <module>mall-portal</module>
+        <module>service-member</module>
+        <module>service-order</module>
+        <module>service-product</module>
+    </modules>
 
 </project>
