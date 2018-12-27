@@ -14,4 +14,10 @@
 		limit 0,1
 	</select>
 
+    <update id="updateNameById">
+        update m_user
+        set username = #{username}
+        where id = #{id}
+    </update>
+
 </mapper>

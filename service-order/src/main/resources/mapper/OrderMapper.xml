@@ -14,4 +14,10 @@
 		limit 0,1
 	</select>
 
+    <update id="updateAmountBySn">
+        update o_order
+        set pay_amount = #{payAmount}
+        where sn = #{sn}
+    </update>
+
 </mapper>

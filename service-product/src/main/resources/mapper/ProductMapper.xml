@@ -14,4 +14,10 @@
 		limit 0,1
 	</select>
 
+    <update id="updatePriceById">
+        update p_product
+        set price = #{price}
+        where id = #{id}
+    </update>
+
 </mapper>

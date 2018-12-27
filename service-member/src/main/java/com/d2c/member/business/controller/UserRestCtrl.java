@@ -6,10 +6,7 @@ import com.d2c.member.business.service.UserService;
 import com.d2c.member.elasticsearch.document.UserSearch;
 import com.d2c.member.mongodb.document.UserMongo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -38,6 +35,11 @@ public class UserRestCtrl {
     @RequestMapping(value = "/api/user/search", method = RequestMethod.GET)
     public List<UserSearch> findSearchByName(@RequestParam(value = "username", required = true) String username) {
         return userService.findSearchByName(username);
+    }
+
+    @RequestMapping(value = "/api/user/update/{id}", method = RequestMethod.GET)
+    public int updateNameById(@PathVariable(name = "id") Long id, @RequestParam(value = "username", required = true) String username) {
+        return userService.updateNameById(id, username);
     }
 
 }

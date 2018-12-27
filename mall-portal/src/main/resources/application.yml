@@ -28,6 +28,15 @@ feign:
         connectTimeout: 10000
         readTimeout: 5000
 
+# hystrix
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
 # ribbon
 service-product:
   ribbon:

@@ -9,4 +9,6 @@ public interface UserMapper {
 
     User findByName(@Param("username") String username);
 
+    int updateNameById(@Param("id") Long id, @Param("username") String username);
+
 }

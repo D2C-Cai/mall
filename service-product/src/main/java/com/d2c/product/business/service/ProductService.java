@@ -5,6 +5,7 @@ import com.d2c.product.business.model.Product;
 import com.d2c.product.elasticsearch.document.ProductSearch;
 import com.d2c.product.mongodb.document.ProductMongo;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface ProductService {
@@ -16,5 +17,7 @@ public interface ProductService {
     List<ProductMongo> findMongoBySn(String sn);
 
     List<ProductSearch> findSearchBySn(String sn);
+
+    int updatePriceById(Long id, BigDecimal price);
 
 }

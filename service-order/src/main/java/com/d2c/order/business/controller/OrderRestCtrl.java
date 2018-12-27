@@ -1,6 +1,7 @@
 package com.d2c.order.business.controller;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.d2c.order.business.model.Order;
 import com.d2c.order.business.service.OrderService;
 import com.d2c.order.elasticsearch.document.OrderSearch;
@@ -38,6 +39,14 @@ public class OrderRestCtrl {
     @RequestMapping(value = "/api/order/search", method = RequestMethod.GET)
     public List<OrderSearch> findSearchBySn(@RequestParam(value = "sn", required = true) String sn) {
         return orderService.findSearchBySn(sn);
+    }
+
+    @RequestMapping(value = "/api/order/tx", method = RequestMethod.GET)
+    public JSONObject doSomeThing(String sn, Long productId, Long memberId) {
+        int result = orderService.doSomeThing(sn, productId, memberId);
+        JSONObject obj = new JSONObject();
+        obj.put("result", result);
+        return obj;
     }
 
 }

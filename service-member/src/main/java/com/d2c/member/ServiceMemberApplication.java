@@ -2,9 +2,8 @@ package com.d2c.member;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration;
 
-@SpringBootApplication(exclude = {JpaRepositoriesAutoConfiguration.class})
+@SpringBootApplication
 public class ServiceMemberApplication {
 
     public static void main(String[] args) {

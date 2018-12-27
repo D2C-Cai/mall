@@ -6,11 +6,9 @@ import com.d2c.product.business.service.ProductService;
 import com.d2c.product.elasticsearch.document.ProductSearch;
 import com.d2c.product.mongodb.document.ProductMongo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -38,6 +36,11 @@ public class ProductRestCtrl {
     @RequestMapping(value = "/api/product/search", method = RequestMethod.GET)
     public List<ProductSearch> findSearchBySn(@RequestParam(value = "sn", required = true) String sn) {
         return productService.findSearchBySn(sn);
+    }
+
+    @RequestMapping(value = "/api/product/update/{id}", method = RequestMethod.GET)
+    public int updatePriceById(@PathVariable(name = "id") Long id, @RequestParam(value = "price", required = true) BigDecimal price) {
+        return productService.updatePriceById(id, price);
     }
 
 }

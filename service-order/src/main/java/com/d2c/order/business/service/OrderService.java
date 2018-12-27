@@ -17,4 +17,6 @@ public interface OrderService {
 
     List<OrderSearch> findSearchBySn(String sn);
 
+    int doSomeThing(String sn, Long productId, Long memberId);
+
 }

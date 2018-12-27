@@ -17,4 +17,6 @@ public interface UserService {
 
     List<UserSearch> findSearchByName(String username);
 
+    int updateNameById(Long id, String username);
+
 }

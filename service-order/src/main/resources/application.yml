@@ -18,6 +18,30 @@ eureka:
     service-url:
       defaultZone: http://192.168.5.20:1001/eureka/
 
+# feign
+feign:
+  hystrix:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 10000
+        readTimeout: 5000
+
+# hystrix
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+# lcn
+tm:
+  manager:
+    url: http://192.168.0.145:7000/tx/manager/
+
 spring:
   profiles: dev
 
@@ -38,12 +62,6 @@ spring:
       username: root
       password: 123456
       driver-class-name: com.mysql.jdbc.Driver
-
-  # jpa
-  jpa:
-    hibernate:
-      ddl-auto: none
-    show-sql: true
 
   # redis
   redis:

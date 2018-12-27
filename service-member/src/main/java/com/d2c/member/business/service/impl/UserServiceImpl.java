@@ -1,6 +1,7 @@
 package com.d2c.member.business.service.impl;
 
 
+import com.codingapi.tx.annotation.ITxTransaction;
 import com.d2c.member.business.dao.UserMapper;
 import com.d2c.member.business.model.User;
 import com.d2c.member.business.service.UserService;
@@ -12,12 +13,13 @@ import com.d2c.member.rabbitmq.sender.DirectSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, ITxTransaction {
 
     @Autowired
     private UserMapper userMapper;
@@ -53,6 +55,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserSearch> findSearchByName(String username) {
         return userSearchRepository.findByUsername(username);
+    }
+
+    @Override
+    @Transactional
+    public int updateNameById(Long id, String username) {
+        return userMapper.updateNameById(id, username);
     }
 
 }

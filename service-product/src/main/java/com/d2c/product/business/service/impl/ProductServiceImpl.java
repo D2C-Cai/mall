@@ -1,6 +1,7 @@
 package com.d2c.product.business.service.impl;
 
 
+import com.codingapi.tx.annotation.ITxTransaction;
 import com.d2c.product.business.dao.ProductMapper;
 import com.d2c.product.business.model.Product;
 import com.d2c.product.business.service.ProductService;
@@ -12,12 +13,14 @@ import com.d2c.product.rabbitmq.sender.DirectSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 
 @Service
-public class ProductServiceImpl implements ProductService {
+public class ProductServiceImpl implements ProductService, ITxTransaction {
 
     @Autowired
     private ProductMapper productMapper;
@@ -53,6 +56,12 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductSearch> findSearchBySn(String sn) {
         return productSearchRepository.findBySn(sn);
+    }
+
+    @Override
+    @Transactional
+    public int updatePriceById(Long id, BigDecimal price) {
+        return productMapper.updatePriceById(id, price);
     }
 
 }
