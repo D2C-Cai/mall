@@ -16,7 +16,7 @@ eureka:
     lease-renewal-interval-in-seconds: 10
   client:
     service-url:
-      defaultZone: http://192.168.5.20:1001/eureka/
+      defaultZone: http://192.168.0.145:1001/eureka/
 
 # feign
 feign:

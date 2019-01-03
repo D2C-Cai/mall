@@ -11,7 +11,7 @@ server:
 
 eureka:
   instance:
-    hostname: 192.168.5.20
+    hostname: 192.168.0.145
   server:
     enable-self-preservation: false
     eviction-interval-timer-in-ms: 30000
