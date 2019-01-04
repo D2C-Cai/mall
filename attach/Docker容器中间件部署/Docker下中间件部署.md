@@ -37,15 +37,3 @@ docker pull mobz/elasticsearch-head:5
 
 docker run -p 9100:9100 --name elasticsearch-head -d mobz/elasticsearch-head:5
 
-**#elasticsearch-kibana**
-
-docker pull kibana:5.6.8
-
-docker run -p 5601:5601 --name elasticsearch-kibana -e ELASTICSEARCH_URL=http://192.168.0.145:9200 -d kibana:5.6.8
-
-**#elasticsearch-ik**
-
-docker exec -it elasticsearch /bin/sh
-
-./bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v5.6.8/elasticsearch-analysis-ik-5.6.8.zip
-
