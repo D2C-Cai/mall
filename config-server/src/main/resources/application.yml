@@ -16,7 +16,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/D2C-Cai/mall.git
+          uri: https://github.com/D2C-Cai/mall-config.git
 
 ---
 
