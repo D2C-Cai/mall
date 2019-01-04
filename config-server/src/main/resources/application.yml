@@ -17,7 +17,6 @@ spring:
       server:
         git:
           uri: https://github.com/D2C-Cai/mall.git
-          search-paths: configs
 
 ---
 
