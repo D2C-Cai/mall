@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: dev
+
+---
+
+server:
+  port: 2001
+
+spring:
+  profiles: dev
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/D2C-Cai/mall.git
+          search-paths: configs
+
+---
+
+spring:
+  profiles: test
+
+---
+
+spring:
+  profiles: prd
