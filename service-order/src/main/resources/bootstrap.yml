@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: service-order
+  # config
+  cloud:
+    config:
+      uri: http://192.168.5.20:2001
+      profile: dev
+      label: master
