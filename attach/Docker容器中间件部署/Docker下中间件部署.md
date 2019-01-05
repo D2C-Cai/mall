@@ -72,4 +72,4 @@ docker run -p 9100:9100 --name elasticsearch-head -d 709931138/mall:elasticsearc
 
 docker pull 709931138/mall:tx-manager-4.2.0
 
-docker run -p 7000:7000 -p 9999:9999 --name tx-manager -d 709931138/mall:tx-manager-4.2.0
+docker run -p 7000:7000 -p 9999:9999 --net=host --name tx-manager -d 709931138/mall:tx-manager-4.2.0

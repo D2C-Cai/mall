@@ -6,6 +6,7 @@ import com.d2c.order.config.mybatis.enums.DBTypeEnum;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -23,18 +24,21 @@ import java.util.Map;
 public class DataSourceConfig {
 
     @Bean
+    @RefreshScope
     @ConfigurationProperties("spring.datasource.master")
     public DataSource masterDataSource() {
         return DataSourceBuilder.create().build();
     }
 
     @Bean
+    @RefreshScope
     @ConfigurationProperties("spring.datasource.slave1")
     public DataSource slave1DataSource() {
         return DataSourceBuilder.create().build();
     }
 
     @Bean
+    @RefreshScope
     @ConfigurationProperties("spring.datasource.slave2")
     public DataSource slave2DataSource() {
         return DataSourceBuilder.create().build();
