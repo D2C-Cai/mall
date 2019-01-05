@@ -1,29 +1,38 @@
-spring:
-  application:
-    name: config-server
-  profiles:
-    active: dev
-
----
-
+# tomcat
 server:
   port: 2001
 
-spring:
-  profiles: dev
+# eureka
+eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 30
+    lease-renewal-interval-in-seconds: 10
+  client:
+    service-url:
+      defaultZone: http://192.168.0.145:1001/eureka/
 
+# actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "bus-refresh"
+
+# spring
+spring:
+  application:
+    name: config-server
+
+  # config
   cloud:
     config:
       server:
         git:
           uri: https://github.com/D2C-Cai/mall-config.git
 
----
-
-spring:
-  profiles: test
-
----
-
-spring:
-  profiles: prd
+  # rabbitmq
+  rabbitmq:
+    host: 192.168.0.145
+    port: 5672
+    username: guest
+    password: guest

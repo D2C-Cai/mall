@@ -1,11 +1,4 @@
-spring:
-  application:
-    name: service-member
-  profiles:
-    active: dev
-
----
-
+# tomcat
 server:
   port: 8001
 
@@ -18,13 +11,15 @@ eureka:
     service-url:
       defaultZone: http://192.168.0.145:1001/eureka/
 
-# lcn
+# tx-lcn
 tm:
   manager:
     url: http://192.168.0.145:7000/tx/manager/
 
+# spring
 spring:
-  profiles: dev
+  application:
+    name: service-member
 
   # database
   datasource:
@@ -72,15 +67,6 @@ spring:
     username: guest
     password: guest
 
----
-
-spring:
-  profiles: test
-
----
-
-spring:
-  profiles: prd
 
 ######################################################### cluster ######################################################
 

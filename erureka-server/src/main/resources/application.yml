@@ -1,14 +1,8 @@
-spring:
-  application:
-    name: erureka-server
-  profiles:
-    active: dev
-
----
-
+# tomcat
 server:
   port: 1001
 
+# eureka
 eureka:
   instance:
     hostname: 192.168.0.145
@@ -21,15 +15,7 @@ eureka:
     service-url:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
 
+# spring
 spring:
-  profiles: dev
-
----
-
-spring:
-  profiles: test
-
----
-
-spring:
-  profiles: prd
+  application:
+    name: erureka-server

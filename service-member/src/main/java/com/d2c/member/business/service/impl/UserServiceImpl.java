@@ -9,7 +9,6 @@ import com.d2c.member.elasticsearch.document.UserSearch;
 import com.d2c.member.elasticsearch.repository.UserSearchRepository;
 import com.d2c.member.mongodb.document.UserMongo;
 import com.d2c.member.mongodb.repository.UserMongoRepository;
-import com.d2c.member.rabbitmq.sender.DirectSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -29,8 +28,6 @@ public class UserServiceImpl implements UserService, ITxTransaction {
     private UserMongoRepository userMongoRepository;
     @Autowired
     private UserSearchRepository userSearchRepository;
-    @Autowired
-    private DirectSender directSender;
 
     @Override
     public User findByName(String username) {
@@ -38,7 +35,6 @@ public class UserServiceImpl implements UserService, ITxTransaction {
         redisTemplate.opsForValue().set("user_" + username, user);
         userMongoRepository.save(new UserMongo(user));
         userSearchRepository.save(new UserSearch(user));
-        //directSender.send(user);
         return user;
     }
 
