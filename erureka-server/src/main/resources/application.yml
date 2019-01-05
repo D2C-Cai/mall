@@ -6,6 +6,7 @@ server:
 eureka:
   instance:
     hostname: 192.168.0.145
+    prefer-ip-address: true
   server:
     enable-self-preservation: false
     eviction-interval-timer-in-ms: 30000
