@@ -1,4 +1,4 @@
-**#mysql**
+# mysql
 
 > docker pull docker.io/mysql:5.7
 
@@ -11,7 +11,7 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123456';
 FLUSH PRIVILEGES;
 
 
-**#elasticsearch**
+# elasticsearch
 
 vi /etc/sysctl.conf
 
@@ -27,57 +27,57 @@ curl -XPUT http://192.168.0.146:9200/index
 
 curl 'http://192.168.0.146:9200/index/_analyze?analyzer=ik_max_word&pretty=true' -d '{"text":"我们是大数据开发技术人员"}'
 
-**#elasticsearch-ik**
+## elasticsearch-ik
 
 https://github.com/medcl/elasticsearch-analysis-ik/releases 去这里下载一个版本5.6.x版本的插件，解压到/mnt/docker/elasticsearch/plugins下重启容器即可
 
-**#elasticsearch-head**
+## elasticsearch-head
 
 > docker pull mobz/elasticsearch-head:5
 
 > docker run -p 9100:9100 --name elasticsearch-head -v /etc/localtime:/etc/localtime:ro -d mobz/elasticsearch-head:5
 
 
-**#mongodb**
+# #mongodb
 
 > docker pull mongo:3.2
 
 > docker run -p 27017:27017 --name mongodb -v /etc/localtime:/etc/localtime:ro -v /mnt/docker/mongodb/db:/data/db -d mongo:3.2
 
 
-**#redis**
+# redis
 
 > docker pull redis:3.2
 
 > docker run -p 6379:6379 --name redis -v /etc/localtime:/etc/localtime:ro -v /mnt/docker/redis/data:/data -d redis:3.2 redis-server --appendonly yes
 
 
-**#rabbitmq**
+# rabbitmq
 
 > docker pull rabbitmq:management
 
 > docker run -p 5672:5672 -p 15672:15672 --name rabbitmq -v /etc/localtime:/etc/localtime:ro -d rabbitmq:management
 
 
-**#lcn:tx-manager**
+# lcn:tx-manager
 
 > docker pull 709931138/mall:tx-manager-4.2.0
 
 > docker run -p 7000:7000 -p 9999:9999 --net=host --name tx-manager -v /etc/localtime:/etc/localtime:ro -d 709931138/mall:tx-manager-4.2.0
 
 
-**#下面是我保存的一些镜像**
+## 下面是我保存的一些镜像
 
->> 709931138/mall:mysql-5.7
+> 709931138/mall:mysql-5.7
 
->> 709931138/mall:redis-3.2
+> 709931138/mall:redis-3.2
 
->> 709931138/mall:mongo-3.2
+> 709931138/mall:mongo-3.2
 
->> 709931138/mall:elasticsearch-5.6.8
+> 709931138/mall:elasticsearch-5.6.8
 
->> 709931138/mall:elasticsearch-head-5
+> 709931138/mall:elasticsearch-head-5
 
->> 709931138/mall:rabbitmq-3.7.8
+> 709931138/mall:rabbitmq-3.7.8
 
->> 709931138/mall:tx-manager-4.2.0
+> 709931138/mall:tx-manager-4.2.0
