@@ -1,4 +1,4 @@
-# mysql
+# Mysql
 
 > docker pull docker.io/mysql:5.7
 
@@ -11,7 +11,7 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123456';
 FLUSH PRIVILEGES;
 
 
-# elasticsearch
+# Elasticsearch
 
 vi /etc/sysctl.conf
 
@@ -38,35 +38,35 @@ https://github.com/medcl/elasticsearch-analysis-ik/releases 去这里下载一�
 > docker run -p 9100:9100 --name elasticsearch-head -v /etc/localtime:/etc/localtime:ro -d mobz/elasticsearch-head:5
 
 
-# mongodb
+# Mongodb
 
 > docker pull mongo:3.2
 
 > docker run -p 27017:27017 --name mongodb -v /etc/localtime:/etc/localtime:ro -v /mnt/docker/mongodb/db:/data/db -d mongo:3.2
 
 
-# redis
+# Redis
 
 > docker pull redis:3.2
 
 > docker run -p 6379:6379 --name redis -v /etc/localtime:/etc/localtime:ro -v /mnt/docker/redis/data:/data -d redis:3.2 redis-server --appendonly yes
 
 
-# rabbitmq
+# Rabbitmq
 
 > docker pull rabbitmq:management
 
 > docker run -p 5672:5672 -p 15672:15672 --name rabbitmq -v /etc/localtime:/etc/localtime:ro -d rabbitmq:management
 
 
-# lcn:tx-manager
+# LCN:tx-manager
 
 > docker pull 709931138/mall:tx-manager-4.2.0
 
 > docker run -p 7000:7000 -p 9999:9999 --net=host --name tx-manager -v /etc/localtime:/etc/localtime:ro -d 709931138/mall:tx-manager-4.2.0
 
 
-## 下面是我保存的一些镜像
+**下面是我保存的一些镜像**
 
 > 709931138/mall:mysql-5.7
 
