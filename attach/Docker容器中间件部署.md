@@ -38,7 +38,7 @@ https://github.com/medcl/elasticsearch-analysis-ik/releases 去这里下载一�
 > docker run -p 9100:9100 --name elasticsearch-head -v /etc/localtime:/etc/localtime:ro -d mobz/elasticsearch-head:5
 
 
-# #mongodb
+# mongodb
 
 > docker pull mongo:3.2
 
@@ -71,7 +71,7 @@ https://github.com/medcl/elasticsearch-analysis-ik/releases 去这里下载一�
 > 709931138/mall:mysql-5.7
 
 > 709931138/mall:redis-3.2
-
+ 
 > 709931138/mall:mongo-3.2
 
 > 709931138/mall:elasticsearch-5.6.8
