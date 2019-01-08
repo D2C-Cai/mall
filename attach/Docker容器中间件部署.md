@@ -1,8 +1,8 @@
 **#mysql**
 
-### docker pull docker.io/mysql:5.7
+> docker pull docker.io/mysql:5.7
 
-### docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -v /etc/localtime:/etc/localtime:ro -v /mnt/docker/mysql/conf:/etc/mysql -v /mnt/docker/mysql/log:/var/log/mysql -v /mnt/docker/mysql/data:/var/lib/mysql -d mysql:5.7
+> docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -v /etc/localtime:/etc/localtime:ro -v /mnt/docker/mysql/conf:/etc/mysql -v /mnt/docker/mysql/log:/var/log/mysql -v /mnt/docker/mysql/data:/var/lib/mysql -d mysql:5.7
 
 docker exec -it mysql mysql -uroot -p123456
 
@@ -19,9 +19,9 @@ vm.max_map_count=655360
 
 sysctl -p
 
-### docker pull elasticsearch:5.6.8
+> docker pull elasticsearch:5.6.8
 
-### docker run -p 9200:9200 -p 9300:9300 --name elasticsearch -v /etc/localtime:/etc/localtime:ro -v /mnt/docker/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml -v /mnt/docker/elasticsearch/data:/usr/share/elasticsearch/data -v /mnt/docker/elasticsearch/plugins:/usr/share/elasticsearch/plugins -v /mnt/docker/elasticsearch/logs:/usr/share/elasticsearch/logs -d elasticsearch:5.6.8
+> docker run -p 9200:9200 -p 9300:9300 --name elasticsearch -v /etc/localtime:/etc/localtime:ro -v /mnt/docker/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml -v /mnt/docker/elasticsearch/data:/usr/share/elasticsearch/data -v /mnt/docker/elasticsearch/plugins:/usr/share/elasticsearch/plugins -v /mnt/docker/elasticsearch/logs:/usr/share/elasticsearch/logs -d elasticsearch:5.6.8
 
 curl -XPUT http://192.168.0.146:9200/index
 
@@ -33,40 +33,40 @@ https://github.com/medcl/elasticsearch-analysis-ik/releases 去这里下载一�
 
 **#elasticsearch-head**
 
-### docker pull mobz/elasticsearch-head:5
+> docker pull mobz/elasticsearch-head:5
 
-### docker run -p 9100:9100 --name elasticsearch-head -v /etc/localtime:/etc/localtime:ro -d mobz/elasticsearch-head:5
+> docker run -p 9100:9100 --name elasticsearch-head -v /etc/localtime:/etc/localtime:ro -d mobz/elasticsearch-head:5
 
 
 **#mongodb**
 
-### docker pull mongo:3.2
+> docker pull mongo:3.2
 
-### docker run -p 27017:27017 --name mongodb -v /etc/localtime:/etc/localtime:ro -v /mnt/docker/mongodb/db:/data/db -d mongo:3.2
+> docker run -p 27017:27017 --name mongodb -v /etc/localtime:/etc/localtime:ro -v /mnt/docker/mongodb/db:/data/db -d mongo:3.2
 
 
 **#redis**
 
-### docker pull redis:3.2
+> docker pull redis:3.2
 
-### docker run -p 6379:6379 --name redis -v /etc/localtime:/etc/localtime:ro -v /mnt/docker/redis/data:/data -d redis:3.2 redis-server --appendonly yes
+> docker run -p 6379:6379 --name redis -v /etc/localtime:/etc/localtime:ro -v /mnt/docker/redis/data:/data -d redis:3.2 redis-server --appendonly yes
 
 
 **#rabbitmq**
 
-### docker pull rabbitmq:management
+> docker pull rabbitmq:management
 
-### docker run -p 5672:5672 -p 15672:15672 --name rabbitmq -v /etc/localtime:/etc/localtime:ro -d rabbitmq:management
+> docker run -p 5672:5672 -p 15672:15672 --name rabbitmq -v /etc/localtime:/etc/localtime:ro -d rabbitmq:management
 
 
 **#lcn:tx-manager**
 
-### docker pull 709931138/mall:tx-manager-4.2.0
+> docker pull 709931138/mall:tx-manager-4.2.0
 
-### docker run -p 7000:7000 -p 9999:9999 --net=host --name tx-manager -v /etc/localtime:/etc/localtime:ro -d 709931138/mall:tx-manager-4.2.0
+> docker run -p 7000:7000 -p 9999:9999 --net=host --name tx-manager -v /etc/localtime:/etc/localtime:ro -d 709931138/mall:tx-manager-4.2.0
 
 
-> 下面是我保存的一些镜像
+**#下面是我保存的一些镜像**
 
 >> 709931138/mall:mysql-5.7
 
