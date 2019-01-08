@@ -9,7 +9,7 @@ eureka:
     lease-renewal-interval-in-seconds: 10
   client:
     service-url:
-      defaultZone: http://192.168.0.145:1001/eureka/
+      defaultZone: http://192.168.0.146:1001/eureka/
 
 # actuator
 management:
@@ -32,7 +32,7 @@ spring:
 
   # rabbitmq
   rabbitmq:
-    host: 192.168.0.145
+    host: 192.168.0.146
     port: 5672
     username: guest
     password: guest

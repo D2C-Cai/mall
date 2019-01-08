@@ -9,7 +9,7 @@ eureka:
     lease-renewal-interval-in-seconds: 10
   client:
     service-url:
-      defaultZone: http://192.168.0.145:1001/eureka/
+      defaultZone: http://192.168.0.146:1001/eureka/
 
 # feign
 feign:
@@ -33,7 +33,7 @@ hystrix:
 # tx-lcn
 tm:
   manager:
-    url: http://192.168.0.145:7000/tx/manager/
+    url: http://192.168.0.146:7000/tx/manager/
 
 # spring
 spring:
@@ -43,17 +43,17 @@ spring:
   # database
   datasource:
     master:
-      jdbc-url: jdbc:mysql://192.168.0.139:3306/merchant?useUnicode=true&characterEncoding=utf-8
+      jdbc-url: jdbc:mysql://192.168.0.146:3306/shop?useUnicode=true&characterEncoding=utf-8
       username: root
       password: 123456
       driver-class-name: com.mysql.jdbc.Driver
     slave1:
-      jdbc-url: jdbc:mysql://192.168.0.139:3306/merchant?useUnicode=true&characterEncoding=utf-8
+      jdbc-url: jdbc:mysql://192.168.0.146:3306/shop?useUnicode=true&characterEncoding=utf-8
       username: root
       password: 123456
       driver-class-name: com.mysql.jdbc.Driver
     slave2:
-      jdbc-url: jdbc:mysql://192.168.0.139:3306/merchant?useUnicode=true&characterEncoding=utf-8
+      jdbc-url: jdbc:mysql://192.168.0.146:3306/shop?useUnicode=true&characterEncoding=utf-8
       username: root
       password: 123456
       driver-class-name: com.mysql.jdbc.Driver
@@ -61,7 +61,7 @@ spring:
   # redis
   redis:
     database: 0
-    host: 192.168.0.145
+    host: 192.168.0.146
     port: 6379
     jedis:
       pool:
@@ -72,16 +72,16 @@ spring:
   data:
     # mongodb
     mongodb:
-      uri: mongodb://192.168.0.145:27017/merchant
+      uri: mongodb://192.168.0.146:27017/shop
 
     # elasticsearch
     elasticsearch:
       cluster-name: d2cmall-es
-      cluster-nodes: 192.168.0.145:9300
+      cluster-nodes: 192.168.0.146:9300
 
   # rabbitmq
   rabbitmq:
-    host: 192.168.0.145
+    host: 192.168.0.146
     port: 5672
     username: guest
     password: guest
@@ -109,7 +109,7 @@ spring:
 #  data:
 #  # mongodb
 #    mongodb:
-#      uri: mongodb://192.168.0.143:27017,192.168.0.144:27017,192.168.0.145:27017/merchant
+#      uri: mongodb://192.168.0.143:27017,192.168.0.144:27017,192.168.0.145:27017/shop
 
 #  # elasticsearch
 #    elasticsearch:

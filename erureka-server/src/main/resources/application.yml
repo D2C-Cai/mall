@@ -5,7 +5,7 @@ server:
 # eureka
 eureka:
   instance:
-    hostname: 192.168.0.145
+    hostname: 192.168.0.146
     prefer-ip-address: true
   server:
     enable-self-preservation: false
