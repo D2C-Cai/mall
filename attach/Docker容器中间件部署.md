@@ -63,7 +63,7 @@ https://github.com/medcl/elasticsearch-analysis-ik/releases 去这里下载一�
 
 > docker pull 709931138/mall:tx-manager-4.2.0
 
-> docker run -p 7000:7000 -p 9999:9999 --net=host --name tx-manager -v /etc/localtime:/etc/localtime:ro -d 709931138/mall:tx-manager-4.2.0
+> docker run -p 7000:7000 -p 9999:9999 --net=host --name tx-manager -v /etc/localtime:/etc/localtime:ro -v /mnt/docker/tx-manager/conf/application.properties:/mnt/tx-manager-4.2.0/application.properties -d 709931138/mall:tx-manager-4.2.0
 
 
 **下面是我保存的一些镜像**
