@@ -9,7 +9,6 @@ import com.d2c.product.elasticsearch.document.ProductSearch;
 import com.d2c.product.elasticsearch.repository.ProductSearchRepository;
 import com.d2c.product.mongodb.document.ProductMongo;
 import com.d2c.product.mongodb.repository.ProductMongoRepository;
-import com.d2c.product.rabbitmq.sender.DirectSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -30,8 +29,6 @@ public class ProductServiceImpl implements ProductService, ITxTransaction {
     private ProductMongoRepository productMongoRepository;
     @Autowired
     private ProductSearchRepository productSearchRepository;
-    @Autowired
-    private DirectSender directSender;
 
     @Override
     public Product findBySn(String sn) {
@@ -39,7 +36,6 @@ public class ProductServiceImpl implements ProductService, ITxTransaction {
         redisTemplate.opsForValue().set("order_" + sn, product);
         productMongoRepository.save(new ProductMongo(product));
         productSearchRepository.save(new ProductSearch(product));
-        //directSender.send(product);
         return product;
     }
 
