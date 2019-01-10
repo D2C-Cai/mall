@@ -4,6 +4,6 @@ spring:
   # config
   cloud:
     config:
-      uri: http://192.168.5.20:2001
+      uri: http://192.168.0.146:2001
       profile: dev
       label: master
