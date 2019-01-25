@@ -13,10 +13,8 @@ public class UserMongo {
 
     @Id
     Long id;
-
     @NonNull
     String username;
-
     @NonNull
     String password;
 

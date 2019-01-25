@@ -11,10 +11,8 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     Long id;
-
     @NonNull
     String username;
-
     @NonNull
     String password;
 

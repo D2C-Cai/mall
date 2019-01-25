@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface MemberClient {
 
     @GetMapping("/api/user/update/{id}")
-    int updateNameById(@PathVariable(name = "id") Long id, @RequestParam(value = "username") String username);
+    int updatePasswdById(@PathVariable(name = "id") Long id, @RequestParam(value = "password") String password);
 
 }

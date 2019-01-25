@@ -1,6 +1,5 @@
 package com.d2c.member.elasticsearch.document;
 
-
 import com.d2c.member.business.model.User;
 import lombok.Data;
 import lombok.NonNull;
@@ -18,11 +17,9 @@ public class UserSearch implements Serializable {
 
     @Id
     Long id;
-
     @NonNull
     @Field(type = FieldType.Keyword)
     String username;
-
     @NonNull
     String password;
 

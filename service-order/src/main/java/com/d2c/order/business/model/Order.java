@@ -12,10 +12,8 @@ import java.math.BigDecimal;
 public class Order implements Serializable {
 
     Long id;
-
     @NonNull
     String sn;
-
     BigDecimal payAmount;
 
 }

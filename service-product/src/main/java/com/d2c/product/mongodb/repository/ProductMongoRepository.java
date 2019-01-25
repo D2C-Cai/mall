@@ -1,6 +1,5 @@
 package com.d2c.product.mongodb.repository;
 
-
 import com.d2c.product.mongodb.document.ProductMongo;
 import org.springframework.data.mongodb.repository.MongoRepository;
 

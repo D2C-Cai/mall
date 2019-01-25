@@ -13,10 +13,8 @@ import java.math.BigDecimal;
 public class ProductMongo {
 
     Long id;
-
     @NonNull
     String sn;
-
     BigDecimal price;
 
     public ProductMongo() {

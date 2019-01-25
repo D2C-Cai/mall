@@ -1,6 +1,5 @@
 package com.d2c.order.mongodb.repository;
 
-
 import com.d2c.order.mongodb.document.OrderMongo;
 import org.springframework.data.mongodb.repository.MongoRepository;
 

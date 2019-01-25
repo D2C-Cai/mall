@@ -1,6 +1,5 @@
 package com.d2c.product.elasticsearch.document;
 
-
 import com.d2c.product.business.model.Product;
 import lombok.Data;
 import lombok.NonNull;
@@ -17,13 +16,10 @@ import java.math.BigDecimal;
 public class ProductSearch implements Serializable {
 
     Long id;
-
     @NonNull
     @Field(type = FieldType.Keyword)
     String sn;
-
     BigDecimal price;
-
 
     public ProductSearch() {
     }

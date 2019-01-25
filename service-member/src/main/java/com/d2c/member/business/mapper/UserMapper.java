@@ -1,4 +1,4 @@
-package com.d2c.member.business.dao;
+package com.d2c.member.business.mapper;
 
 import com.d2c.member.business.model.User;
 import org.apache.ibatis.annotations.Mapper;
@@ -9,6 +9,6 @@ public interface UserMapper {
 
     User findByName(@Param("username") String username);
 
-    int updateNameById(@Param("id") Long id, @Param("username") String username);
+    int updatePasswdById(@Param("id") Long id, @Param("password") String password);
 
 }

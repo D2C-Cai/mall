@@ -1,6 +1,5 @@
 package com.d2c.member.business.controller;
 
-
 import com.d2c.member.business.model.User;
 import com.d2c.member.business.service.UserService;
 import com.d2c.member.elasticsearch.document.UserSearch;
@@ -9,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 
 @RestController
 public class UserRestCtrl {
@@ -38,8 +36,8 @@ public class UserRestCtrl {
     }
 
     @RequestMapping(value = "/api/user/update/{id}", method = RequestMethod.GET)
-    public int updateNameById(@PathVariable(name = "id") Long id, @RequestParam(value = "username", required = true) String username) {
-        return userService.updateNameById(id, username);
+    public int updatePasswdById(@PathVariable(name = "id") Long id, @RequestParam(value = "password", required = true) String password) {
+        return userService.updatePasswdById(id, password);
     }
 
 }

@@ -13,10 +13,8 @@ import java.math.BigDecimal;
 public class OrderMongo {
 
     Long id;
-
     @NonNull
     String sn;
-
     BigDecimal payAmount;
 
     public OrderMongo() {

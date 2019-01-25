@@ -1,4 +1,4 @@
-package com.d2c.order.business.dao;
+package com.d2c.order.business.mapper;
 
 import com.d2c.order.business.model.Order;
 import org.apache.ibatis.annotations.Mapper;

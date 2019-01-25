@@ -1,6 +1,5 @@
 package com.d2c.order.business.service;
 
-
 import com.d2c.order.business.model.Order;
 import com.d2c.order.elasticsearch.document.OrderSearch;
 import com.d2c.order.mongodb.document.OrderMongo;

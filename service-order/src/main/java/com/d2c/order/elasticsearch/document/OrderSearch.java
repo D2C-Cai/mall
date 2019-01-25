@@ -1,6 +1,5 @@
 package com.d2c.order.elasticsearch.document;
 
-
 import com.d2c.order.business.model.Order;
 import lombok.Data;
 import lombok.NonNull;
@@ -17,13 +16,10 @@ import java.math.BigDecimal;
 public class OrderSearch implements Serializable {
 
     Long id;
-
     @NonNull
     @Field(type = FieldType.Keyword)
     String sn;
-
     BigDecimal payAmount;
-
 
     public OrderSearch() {
     }

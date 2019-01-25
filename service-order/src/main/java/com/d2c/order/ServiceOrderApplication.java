@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
-
 @EnableFeignClients
 @EnableCircuitBreaker
 @SpringBootApplication
@@ -15,5 +14,6 @@ public class ServiceOrderApplication {
         System.setProperty("es.set.netty.runtime.available.processors", "false");
         SpringApplication.run(ServiceOrderApplication.class, args);
     }
+
 }
 

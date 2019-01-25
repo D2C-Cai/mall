@@ -1,8 +1,8 @@
 package com.d2c.product.business.service.impl;
 
-
-import com.codingapi.tx.annotation.ITxTransaction;
-import com.d2c.product.business.dao.ProductMapper;
+import com.codingapi.txlcn.commons.annotation.DTXPropagation;
+import com.codingapi.txlcn.commons.annotation.LcnTransaction;
+import com.d2c.product.business.mapper.ProductMapper;
 import com.d2c.product.business.model.Product;
 import com.d2c.product.business.service.ProductService;
 import com.d2c.product.elasticsearch.document.ProductSearch;
@@ -10,6 +10,7 @@ import com.d2c.product.elasticsearch.repository.ProductSearchRepository;
 import com.d2c.product.mongodb.document.ProductMongo;
 import com.d2c.product.mongodb.repository.ProductMongoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,9 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.util.List;
 
-
 @Service
-public class ProductServiceImpl implements ProductService, ITxTransaction {
+public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductMapper productMapper;
@@ -33,15 +33,16 @@ public class ProductServiceImpl implements ProductService, ITxTransaction {
     @Override
     public Product findBySn(String sn) {
         Product product = productMapper.findBySn(sn);
-        redisTemplate.opsForValue().set("order_" + sn, product);
+        redisTemplate.opsForValue().set("Product::product:" + sn, product);
         productMongoRepository.save(new ProductMongo(product));
         productSearchRepository.save(new ProductSearch(product));
         return product;
     }
 
     @Override
+    @Cacheable(value = "Product", key = "'product:'+#sn", unless = "#result == null")
     public Product findCacheBySn(String sn) {
-        return (Product) redisTemplate.opsForValue().get("order_" + sn);
+        return null;
     }
 
     @Override
@@ -55,6 +56,7 @@ public class ProductServiceImpl implements ProductService, ITxTransaction {
     }
 
     @Override
+    @LcnTransaction(propagation = DTXPropagation.SUPPORTS)
     @Transactional
     public int updatePriceById(Long id, BigDecimal price) {
         return productMapper.updatePriceById(id, price);

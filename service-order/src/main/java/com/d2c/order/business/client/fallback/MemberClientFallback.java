@@ -1,6 +1,5 @@
 package com.d2c.order.business.client.fallback;
 
-
 import com.d2c.order.business.client.MemberClient;
 import org.springframework.stereotype.Component;
 
@@ -8,9 +7,9 @@ import org.springframework.stereotype.Component;
 public class MemberClientFallback implements MemberClient {
 
     @Override
-    public int updateNameById(Long id, String username) {
+    public int updatePasswdById(Long id, String password) {
         System.out.println("MemberClientFallback中的降级方法");
-        throw new RuntimeException("updateNameById更新失败");
+        throw new RuntimeException("updatePasswdById更新失败");
     }
 
 }

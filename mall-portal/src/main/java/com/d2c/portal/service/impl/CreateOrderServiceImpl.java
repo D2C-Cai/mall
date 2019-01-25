@@ -18,7 +18,6 @@ public class CreateOrderServiceImpl implements CreateOrderService {
     @Autowired
     private OrderClient orderClient;
 
-
     @Override
     public JSONObject findThings(String username, String productSn, String orderSn) {
         JSONObject result = new JSONObject();

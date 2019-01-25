@@ -31,9 +31,18 @@ hystrix:
             timeoutInMilliseconds: 5000
 
 # tx-lcn
-tm:
-  manager:
-    url: http://192.168.0.146:7000/tx/manager/
+tx-lcn:
+  client:
+    manager-address: 192.168.0.146:8070
+    resource-order: 0
+  logger:
+    enabled: false
+  message:
+    netty:
+      wait-time: 5000
+  springcloud:
+    loadbalance:
+      enabled: true
 
 # spring
 spring:
@@ -42,21 +51,11 @@ spring:
 
   # database
   datasource:
-    master:
-      jdbc-url: jdbc:mysql://192.168.0.146:3306/shop?useUnicode=true&characterEncoding=utf-8
-      username: root
-      password: 123456
-      driver-class-name: com.mysql.jdbc.Driver
-    slave1:
-      jdbc-url: jdbc:mysql://192.168.0.146:3306/shop?useUnicode=true&characterEncoding=utf-8
-      username: root
-      password: 123456
-      driver-class-name: com.mysql.jdbc.Driver
-    slave2:
-      jdbc-url: jdbc:mysql://192.168.0.146:3306/shop?useUnicode=true&characterEncoding=utf-8
-      username: root
-      password: 123456
-      driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.0.146:3306/shop?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
 
   # redis
   redis:
@@ -85,6 +84,23 @@ spring:
     port: 5672
     username: guest
     password: guest
+
+# mybatis-plus
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml
+  typeAliasesPackage: com.d2c.*.*.model
+  typeEnumsPackage: com.d2c.*.*.model
+  global-config:
+    db-config:
+      id-type: id_worker
+      field-strategy: not_null
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+    sql-parser-cache: true
+  configuration:
+    auto-mapping-behavior: partial
+    map-underscore-to-camel-case: true
+    cache-enabled: false
 
 
 ######################################################### cluster ######################################################

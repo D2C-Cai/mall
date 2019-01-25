@@ -1,6 +1,5 @@
 package com.d2c.member.business.service;
 
-
 import com.d2c.member.business.model.User;
 import com.d2c.member.elasticsearch.document.UserSearch;
 import com.d2c.member.mongodb.document.UserMongo;
@@ -17,6 +16,6 @@ public interface UserService {
 
     List<UserSearch> findSearchByName(String username);
 
-    int updateNameById(Long id, String username);
+    int updatePasswdById(Long id, String password);
 
 }

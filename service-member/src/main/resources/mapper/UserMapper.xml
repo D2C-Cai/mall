@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.d2c.member.business.dao.UserMapper">
+<mapper namespace="com.d2c.member.business.mapper.UserMapper">
     <resultMap id="BaseMap" type="com.d2c.member.business.model.User">
         <result column="id" property="id"/>
         <result column="username" property="username"/>
@@ -14,9 +14,9 @@
 		limit 0,1
 	</select>
 
-    <update id="updateNameById">
+    <update id="updatePasswdById">
         update m_user
-        set username = #{username}
+        set password = #{password}
         where id = #{id}
     </update>
 

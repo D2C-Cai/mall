@@ -1,6 +1,5 @@
 package com.d2c.product.business.controller;
 
-
 import com.d2c.product.business.model.Product;
 import com.d2c.product.business.service.ProductService;
 import com.d2c.product.elasticsearch.document.ProductSearch;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
-
 
 @RestController
 public class ProductRestCtrl {

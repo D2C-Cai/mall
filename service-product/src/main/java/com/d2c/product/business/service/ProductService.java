@@ -1,6 +1,5 @@
 package com.d2c.product.business.service;
 
-
 import com.d2c.product.business.model.Product;
 import com.d2c.product.elasticsearch.document.ProductSearch;
 import com.d2c.product.mongodb.document.ProductMongo;
