@@ -1,20 +1,59 @@
 # SpringCloud+SpringBoot+LCN项目骨架
 
-　　SpringCloud（Finchley.RELEASE）+SpringBoot（2.0.7）项目骨架，eureka+config+bus+feign+ribbon+hystrix+zuul等组件支持，MyBatis+Redis+MongoDB+RabbitMQ+Elasticsearch等集群配置，LCN（5.0.0.RC2）分布式事务框架，支持Docker部署
+　　SpringCloud（Finchley.RELEASE）+SpringBoot（2.0.7）项目骨架，eureka+config+bus+feign+ribbon+hystrix+zuul等组件支持，MyBatis+Redis+MongoDB+RabbitMQ+Elasticsearch等集群配置，LCN（5.0.0.RC2）分布式事务框架，支持Docker部署。<br>
+    作者QQ：709931138
+
+# 项目简介
+
+## 模块功能
+| 名称 | 介绍 | 说明 | 
+| ---- | ---- | ---- |
+| config-server | 远程配置管理服务 | 远程配置文件地址：https://github.com/D2C-Cai/mall-config |
+| erureka-server | cloud微服务注册中心 | 基于REST的定位服务，以实现云端中间层服务发现和故障转移 |
+| mall-portal | mall商城入口服务 | 用于演示 feign+ribbon+hystrix+zuul 等组件基本的使用和配置 |
+| service-member | mall会员微服务(仅演示) | SpringBoot+MybatisPlus框架的业务模块微服务，这里只是个例子，可随意扩展重建，<br>附带feign+config+bus等组件以及LCN分布式事务[参与端]()的演示，整合Redis+MongoDB+RabbitMQ+Elasticsearch基本使用 |
+| service-order | mall订单微服务(仅演示) | SpringBoot+MybatisPlus框架的业务模块微服务，这里只是个例子，可随意扩展重建，<br>附带feign+config+bus等组件以及LCN分布式事务[发起端]()的演示，整合Redis+MongoDB+RabbitMQ+Elasticsearch基本使用 |
+| service-product | mall商品微服务(仅演示) | SpringBoot+MybatisPlus框架的业务模块微服务，这里只是个例子，可随意扩展重建，<br>附带feign+config+bus等组件以及LCN分布式事务[参与端]()的演示，整合Redis+MongoDB+RabbitMQ+Elasticsearch基本使用 |
+
+## 重点框架
+| 名称 | 版本 | 说明 | 
+| ---- | ---- | ---- |
+| SpringCloud | Finchley.RELEASE | 与SpringBoot版本对应 |
+| SpringBoot | 2.0.7 | 与SpringCloud版本对应 |
+| MybatisPlus | 3.0.7.1 | Mybatis升级版，用法见：https://github.com/D2C-Cai/shop，官网：https://mp.baomidou.com |
+| TX-LCN | 5.0.0.RC2 | 高性能的分布式事务解决方案，官网：http://www.txlcn.org/zh-cn |
+
+## 中间件版本
+| 名称 | 版本 |
+| ---- | ---- |
+| MySql | 5.6 |
+| Redis | 3.2 |
+| Mongodb | 3.2 |
+| Elasticsearch | 5.6.8 |
+| Elasticsearch-ik | 5.6.x |
+| Elasticsearch-head | 5 |
+| Rabbitmq | 3.7.8 |
+
+##环境介绍
+  此项目适用于有一定开发基础的开发者使用，项目内使用的框架和中间件都是市面上非常流行的，如何搭建环境的教程不作详细介绍，请开发者自行搭建必要的环境。<br>
+  作者开发电脑局域网IP：192.168.5.20，服务器的局域网IP：192.168.0.146，要保证网络畅通，防火墙配置正确。<br>
+  这里只给出几点建议：Linux服务器作者选用CentOS版本7，JDK选用1.8，MySql数据库5.6建议直接安装在系统上。一些中间件不论单机或集群请务必安装启动：Redis, Mongodb, Rabbitmq, Elasticsearch。<br>
+  还有一个tx-manager，需要redis和mysql，这个是LCN分布式事务的管理服务端，5.0以上版本是普通的SpringBoot项目，去官网下载源码，注意修改配置，mvn打包启动就行。<br>
+  下面给出Docker容器中快捷安装的方案，注意容器时区，以及目录的映射，命令只是建议，不要照抄！
 
 # Docker容器中间件部署
 
-## Mysql
+## Redis
 
-> docker pull docker.io/mysql:5.7
+> docker pull redis:3.2
 
-> docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -v /etc/localtime:/etc/localtime:ro -v /mnt/docker/mysql/conf:/etc/mysql -v /mnt/docker/mysql/log:/var/log/mysql -v /mnt/docker/mysql/data:/var/lib/mysql -d mysql:5.7
+> docker run -p 6379:6379 --name redis -v /etc/localtime:/etc/localtime:ro -v /mnt/docker/redis/data:/data -d redis:3.2 redis-server --appendonly yes
 
-docker exec -it mysql mysql -uroot -p123456
+## Mongodb
 
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123456';
+> docker pull mongo:3.2
 
-FLUSH PRIVILEGES;
+> docker run -p 27017:27017 --name mongodb -v /etc/localtime:/etc/localtime:ro -v /mnt/docker/mongodb/db:/data/db -d mongo:3.2
 
 
 ## Elasticsearch
@@ -33,30 +72,15 @@ curl -XPUT http://192.168.0.146:9200/index
 
 curl 'http://192.168.0.146:9200/index/_analyze?analyzer=ik_max_word&pretty=true' -d '{"text":"我们是大数据开发技术人员"}'
 
-### elasticsearch-ik
+#### elasticsearch-ik
 
 https://github.com/medcl/elasticsearch-analysis-ik/releases 去这里下载一个版本5.6.x版本的插件，解压到/mnt/docker/elasticsearch/plugins下重启容器即可
 
-### elasticsearch-head
+#### elasticsearch-head
 
 > docker pull mobz/elasticsearch-head:5
 
 > docker run -p 9100:9100 --name elasticsearch-head -v /etc/localtime:/etc/localtime:ro -d mobz/elasticsearch-head:5
-
-
-## Mongodb
-
-> docker pull mongo:3.2
-
-> docker run -p 27017:27017 --name mongodb -v /etc/localtime:/etc/localtime:ro -v /mnt/docker/mongodb/db:/data/db -d mongo:3.2
-
-
-## Redis
-
-> docker pull redis:3.2
-
-> docker run -p 6379:6379 --name redis -v /etc/localtime:/etc/localtime:ro -v /mnt/docker/redis/data:/data -d redis:3.2 redis-server --appendonly yes
-
 
 ## Rabbitmq
 
@@ -65,9 +89,7 @@ https://github.com/medcl/elasticsearch-analysis-ik/releases 去这里下载一�
 > docker run -p 5672:5672 -p 15672:15672 --name rabbitmq -v /etc/localtime:/etc/localtime:ro -d rabbitmq:management
 
 
-### 下面是我保存的一些镜像
-
-> 709931138/mall:mysql-5.7
+#### 下面是我保存的一些镜像
 
 > 709931138/mall:redis-3.2
  
@@ -81,7 +103,6 @@ https://github.com/medcl/elasticsearch-analysis-ik/releases 去这里下载一�
 
 
 # Service启动后的测试地址
-
 
 **#erureka-server**
 
