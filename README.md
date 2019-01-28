@@ -179,3 +179,8 @@ https://github.com/medcl/elasticsearch-analysis-ik/releases 去这里下载一�
 > http://192.168.5.20:9001/apigateway/product/api/product?sn=SN123456
 
 > http://192.168.5.20:9001/apigateway/order/api/order?sn=Q123456
+
+
+## License
+
+This project is under the Apache 2.0 license. See the [LICENSE](https://github.com/apache/incubator-dubbo/blob/master/LICENSE) file for details.
