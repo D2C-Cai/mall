@@ -3,8 +3,8 @@
 　　SpringCloud（Finchley.RELEASE）+SpringBoot（2.0.7）项目骨架，eureka+config+bus+feign+ribbon+hystrix+zuul等组件支持，MyBatis+Redis+MongoDB+RabbitMQ+Elasticsearch等集群配置，LCN（5.0.0.RC2）分布式事务框架，支持Docker部署。<br>
 　　作者QQ：[709931138]()
 
-## 说在前面
-　　**骨架项目的精髓，力在追求：框架流行，版本要新，配置清晰，代码简洁，案例完整。依赖最小化，不拖泥带水，不自以为是，不添加乱七八糟的小工具。**
+## 背景介绍
+　　**骨架项目的精髓，力在追求：框架流行，版本要新，配置清晰，代码简洁，案例完整。依赖最小化，不拖泥带水，不自以为是。**
 
 ## 环境介绍
 　　此项目适用于有一定开发基础的开发者使用，项目内使用的框架和中间件都是市面上非常流行的，如何搭建环境的教程不作详细介绍，请开发者自行搭建必要的环境。<br>
@@ -19,6 +19,7 @@
 ## 模块功能
 | 名称 | 介绍 | 说明 | 
 | ---- | ---- | ---- |
+| admin-server<br> | 远程监控管理服务 | 监控基于SpringBoot的应用，简洁的可视化UI |
 | config-server<br> | 远程配置管理服务 | 远程配置文件地址：https://github.com/D2C-Cai/mall-config |
 | erureka-server<br> | cloud微服务注册中心 | 基于REST的定位服务，以实现云端中间层服务发现和故障转移 |
 | mall-portal<br> | mall商城入口服务 | 用于演示 feign+ribbon+hystrix+zuul 等组件基本的使用和配置 |
@@ -110,29 +111,37 @@ https://github.com/medcl/elasticsearch-analysis-ik/releases 去这里下载一�
 
 **#erureka-server**
 
-> http://192.168.5.20:1001/
+> http://192.168.0.146:1001/
+
+**#admin-server**
+
+> http://192.168.0.146:3001/
+
+**#tx-manager**
+
+> http://192.168.0.146:7970/
 
 **#config-server**
 
-> http://192.168.5.20:2001/service-member-dev.yml
+> http://192.168.0.146:2001/service-member-dev.yml
 
-> http://192.168.5.20:2001/service-member-test.yml
+> http://192.168.0.146:2001/service-member-test.yml
 
-> http://192.168.5.20:2001/service-member-prd.yml
+> http://192.168.0.146:2001/service-member-prd.yml
 
-> http://192.168.5.20:2001/service-product-dev.yml
+> http://192.168.0.146:2001/service-product-dev.yml
 
-> http://192.168.5.20:2001/service-product-test.yml
+> http://192.168.0.146:2001/service-product-test.yml
 
-> http://192.168.5.20:2001/service-product-prd.yml
+> http://192.168.0.146:2001/service-product-prd.yml
 
-> http://192.168.5.20:2001/service-order-dev.yml
+> http://192.168.0.146:2001/service-order-dev.yml
 
-> http://192.168.5.20:2001/service-order-test.yml
+> http://192.168.0.146:2001/service-order-test.yml
 
-> http://192.168.5.20:2001/service-order-prd.yml
+> http://192.168.0.146:2001/service-order-prd.yml
 
-> http://192.168.5.20:2001/actuator/bus-refresh POST
+> http://192.168.0.146:2001/actuator/bus-refresh POST
 
 **#service-member**
 
