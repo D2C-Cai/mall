@@ -10,8 +10,9 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>erureka-server</module>
+        <module>admin-server</module>
         <module>config-server</module>
+        <module>erureka-server</module>
         <module>mall-portal</module>
         <module>service-member</module>
         <module>service-order</module>
