@@ -89,7 +89,6 @@ spring:
 mybatis-plus:
   mapper-locations: classpath:/mapper/*.xml
   typeAliasesPackage: com.d2c.*.*.model
-  typeEnumsPackage: com.d2c.*.*.model
   global-config:
     db-config:
       id-type: id_worker
