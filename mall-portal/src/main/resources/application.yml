@@ -53,6 +53,13 @@ zuul:
   ignored-patterns: /service-*/**
   sensitive-headers:
 
+# actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
 # spring
 spring:
   application:

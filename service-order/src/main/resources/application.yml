@@ -30,6 +30,13 @@ hystrix:
           thread:
             timeoutInMilliseconds: 5000
 
+# actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
 # tx-lcn
 tx-lcn:
   client:

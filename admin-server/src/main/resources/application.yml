@@ -1,0 +1,35 @@
+# tomcat
+server:
+  port: 3001
+
+# eureka
+eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 30
+    lease-renewal-interval-in-seconds: 10
+    health-check-url-path: /actuator/health
+    metadata-map:
+      user.name: admin
+      user.password: 123456
+  client:
+    service-url:
+      defaultZone: http://192.168.0.146:1001/eureka/
+
+# actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+# spring
+spring:
+  application:
+    name: admin-server
+  security:
+    user:
+      name: admin
+      password: 123456

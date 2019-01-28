@@ -11,6 +11,13 @@ eureka:
     service-url:
       defaultZone: http://192.168.0.146:1001/eureka/
 
+# actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
 # tx-lcn
 tx-lcn:
   client:
