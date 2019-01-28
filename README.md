@@ -1,7 +1,7 @@
 # SpringCloud+SpringBoot+LCN项目骨架
 
 　　SpringCloud（Finchley.RELEASE）+SpringBoot（2.0.7）项目骨架，eureka+config+bus+feign+ribbon+hystrix+zuul等组件支持，MyBatis+Redis+MongoDB+RabbitMQ+Elasticsearch等集群配置，LCN（5.0.0.RC2）分布式事务框架，支持Docker部署。<br>
-　　作者QQ：709931138
+　　作者QQ：[709931138]()
 
 ## 环境介绍
 　　此项目适用于有一定开发基础的开发者使用，项目内使用的框架和中间件都是市面上非常流行的，如何搭建环境的教程不作详细介绍，请开发者自行搭建必要的环境。<br>
@@ -16,19 +16,19 @@
 ## 模块功能
 | 名称 | 介绍 | 说明 | 
 | ---- | ---- | ---- |
-| config-server | 远程配置管理服务 | 远程配置文件地址：https://github.com/D2C-Cai/mall-config |
-| erureka-server | cloud微服务注册中心 | 基于REST的定位服务，以实现云端中间层服务发现和故障转移 |
-| mall-portal | mall商城入口服务 | 用于演示 feign+ribbon+hystrix+zuul 等组件基本的使用和配置 |
-| service-member | mall会员微服务(仅演示) | SpringBoot+MybatisPlus框架的业务模块微服务，可随意扩展重建，<br>附带feign+config+bus等组件以及LCN分布式事务[参与端]()的演示，整合Redis+MongoDB+RabbitMQ+Elasticsearch基本使用 |
-| service-order | mall订单微服务(仅演示) | SpringBoot+MybatisPlus框架的业务模块微服务，可随意扩展重建，<br>附带feign+config+bus等组件以及LCN分布式事务[发起端]()的演示，整合Redis+MongoDB+RabbitMQ+Elasticsearch基本使用 |
-| service-product | mall商品微服务(仅演示) | SpringBoot+MybatisPlus框架的业务模块微服务，可随意扩展重建，<br>附带feign+config+bus等组件以及LCN分布式事务[参与端]()的演示，整合Redis+MongoDB+RabbitMQ+Elasticsearch基本使用 |
+| config-server<br> | 远程配置管理服务 | 远程配置文件地址：https://github.com/D2C-Cai/mall-config |
+| erureka-server<br | cloud微服务注册中心 | 基于REST的定位服务，以实现云端中间层服务发现和故障转移 |
+| mall-portal<br | mall商城入口服务 | 用于演示 feign+ribbon+hystrix+zuul 等组件基本的使用和配置 |
+| service-member<br | mall会员微服务(仅演示) | SpringBoot+MybatisPlus框架的业务模块微服务，可随意扩展重建，<br>附带feign+config+bus等组件以及LCN分布式事务[参与端]()的演示，<br>整合Redis+MongoDB+RabbitMQ+Elasticsearch中间件的基本使用 |
+| service-order<br | mall订单微服务(仅演示) | SpringBoot+MybatisPlus框架的业务模块微服务，可随意扩展重建，<br>附带feign+config+bus等组件以及LCN分布式事务[发起端]()的演示，<br>整合Redis+MongoDB+RabbitMQ+Elasticsearch中间件的基本使用 |
+| service-product<br | mall商品微服务(仅演示) | SpringBoot+MybatisPlus框架的业务模块微服务，可随意扩展重建，<br>附带feign+config+bus等组件以及LCN分布式事务[参与端]()的演示，<br>整合Redis+MongoDB+RabbitMQ+Elasticsearch中间件的基本使用 |
 
 ## 重点框架
 | 名称 | 版本 | 说明 | 
 | ---- | ---- | ---- |
 | SpringCloud | Finchley.RELEASE | 与SpringBoot版本对应 |
 | SpringBoot | 2.0.7 | 与SpringCloud版本对应 |
-| MybatisPlus | 3.0.7.1 | Mybatis升级版，用法见：https://github.com/D2C-Cai/shop，<br>官网：https://mp.baomidou.com |
+| MybatisPlus | 3.0.7.1 | Mybatis升级版，官网：https://mp.baomidou.com <br>用法详见：https://github.com/D2C-Cai/shop |
 | TX-LCN | 5.0.0.RC2 | 高性能的分布式事务解决方案，官网：http://www.txlcn.org/zh-cn |
 
 ## 中间件版本
