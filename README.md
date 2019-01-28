@@ -3,6 +3,14 @@
 　　SpringCloud（Finchley.RELEASE）+SpringBoot（2.0.7）项目骨架，eureka+config+bus+feign+ribbon+hystrix+zuul等组件支持，MyBatis+Redis+MongoDB+RabbitMQ+Elasticsearch等集群配置，LCN（5.0.0.RC2）分布式事务框架，支持Docker部署。<br>
 　　作者QQ：709931138
 
+## 环境介绍
+　　此项目适用于有一定开发基础的开发者使用，项目内使用的框架和中间件都是市面上非常流行的，如何搭建环境的教程不作详细介绍，请开发者自行搭建必要的环境。<br>
+　　作者开发电脑局域网IP：192.168.5.20，服务器的局域网IP：192.168.0.146，要保证网络畅通，防火墙配置正确。<br>
+　　这里只给出几点建议：Linux服务器作者选用CentOS版本7，JDK选用1.8，MySql数据库5.6建议直接安装在系统上。一些中间件不论单机或集群请务必安装启动：Redis, Mongodb, Rabbitmq, Elasticsearch。<br>
+　　还有一个[tx-manager]()，需要redis和mysql，这个是LCN分布式事务的管理服务端，5.0以上版本是普通的SpringBoot项目，去官网下载源码，注意修改配置，mvn打包启动就行。<br>
+　　下面给出Docker容器中快捷安装的方案，注意容器时区，以及目录的映射，[命令只是建议，不要照抄]()！
+
+
 # 项目简介
 
 ## 模块功能
@@ -11,9 +19,9 @@
 | config-server | 远程配置管理服务 | 远程配置文件地址：https://github.com/D2C-Cai/mall-config |
 | erureka-server | cloud微服务注册中心 | 基于REST的定位服务，以实现云端中间层服务发现和故障转移 |
 | mall-portal | mall商城入口服务 | 用于演示 feign+ribbon+hystrix+zuul 等组件基本的使用和配置 |
-| service-member | mall会员微服务(仅演示) | SpringBoot+MybatisPlus框架的业务模块微服务，这里只是个例子，可随意扩展重建，<br>附带feign+config+bus等组件以及LCN分布式事务[参与端]()的演示，整合Redis+MongoDB+RabbitMQ+Elasticsearch基本使用 |
-| service-order | mall订单微服务(仅演示) | SpringBoot+MybatisPlus框架的业务模块微服务，这里只是个例子，可随意扩展重建，<br>附带feign+config+bus等组件以及LCN分布式事务[发起端]()的演示，整合Redis+MongoDB+RabbitMQ+Elasticsearch基本使用 |
-| service-product | mall商品微服务(仅演示) | SpringBoot+MybatisPlus框架的业务模块微服务，这里只是个例子，可随意扩展重建，<br>附带feign+config+bus等组件以及LCN分布式事务[参与端]()的演示，整合Redis+MongoDB+RabbitMQ+Elasticsearch基本使用 |
+| service-member | mall会员微服务(仅演示) | SpringBoot+MybatisPlus框架的业务模块微服务，可随意扩展重建，<br>附带feign+config+bus等组件以及LCN分布式事务[参与端]()的演示，整合Redis+MongoDB+RabbitMQ+Elasticsearch基本使用 |
+| service-order | mall订单微服务(仅演示) | SpringBoot+MybatisPlus框架的业务模块微服务，可随意扩展重建，<br>附带feign+config+bus等组件以及LCN分布式事务[发起端]()的演示，整合Redis+MongoDB+RabbitMQ+Elasticsearch基本使用 |
+| service-product | mall商品微服务(仅演示) | SpringBoot+MybatisPlus框架的业务模块微服务，可随意扩展重建，<br>附带feign+config+bus等组件以及LCN分布式事务[参与端]()的演示，整合Redis+MongoDB+RabbitMQ+Elasticsearch基本使用 |
 
 ## 重点框架
 | 名称 | 版本 | 说明 | 
@@ -34,12 +42,6 @@
 | Elasticsearch-head | 5 |
 | Rabbitmq | 3.7.8 |
 
-## 环境介绍
-　　此项目适用于有一定开发基础的开发者使用，项目内使用的框架和中间件都是市面上非常流行的，如何搭建环境的教程不作详细介绍，请开发者自行搭建必要的环境。<br>
-　　作者开发电脑局域网IP：192.168.5.20，服务器的局域网IP：192.168.0.146，要保证网络畅通，防火墙配置正确。<br>
-　　这里只给出几点建议：Linux服务器作者选用CentOS版本7，JDK选用1.8，MySql数据库5.6建议直接安装在系统上。一些中间件不论单机或集群请务必安装启动：Redis, Mongodb, Rabbitmq, Elasticsearch。<br>
-　　还有一个[tx-manager]()，需要redis和mysql，这个是LCN分布式事务的管理服务端，5.0以上版本是普通的SpringBoot项目，去官网下载源码，注意修改配置，mvn打包启动就行。<br>
-　　下面给出Docker容器中快捷安装的方案，注意容器时区，以及目录的映射，[命令只是建议，不要照抄]()！
 
 # Docker容器中间件部署
 
