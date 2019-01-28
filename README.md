@@ -17,11 +17,11 @@
 | 名称 | 介绍 | 说明 | 
 | ---- | ---- | ---- |
 | config-server<br> | 远程配置管理服务 | 远程配置文件地址：https://github.com/D2C-Cai/mall-config |
-| erureka-server<br | cloud微服务注册中心 | 基于REST的定位服务，以实现云端中间层服务发现和故障转移 |
-| mall-portal<br | mall商城入口服务 | 用于演示 feign+ribbon+hystrix+zuul 等组件基本的使用和配置 |
-| service-member<br | mall会员微服务(仅演示) | SpringBoot+MybatisPlus框架的业务模块微服务，可随意扩展重建，<br>附带feign+config+bus等组件以及LCN分布式事务[参与端]()的演示，<br>整合Redis+MongoDB+RabbitMQ+Elasticsearch中间件的基本使用 |
-| service-order<br | mall订单微服务(仅演示) | SpringBoot+MybatisPlus框架的业务模块微服务，可随意扩展重建，<br>附带feign+config+bus等组件以及LCN分布式事务[发起端]()的演示，<br>整合Redis+MongoDB+RabbitMQ+Elasticsearch中间件的基本使用 |
-| service-product<br | mall商品微服务(仅演示) | SpringBoot+MybatisPlus框架的业务模块微服务，可随意扩展重建，<br>附带feign+config+bus等组件以及LCN分布式事务[参与端]()的演示，<br>整合Redis+MongoDB+RabbitMQ+Elasticsearch中间件的基本使用 |
+| erureka-server<br> | cloud微服务注册中心 | 基于REST的定位服务，以实现云端中间层服务发现和故障转移 |
+| mall-portal<br> | mall商城入口服务 | 用于演示 feign+ribbon+hystrix+zuul 等组件基本的使用和配置 |
+| service-member<br> | mall会员微服务(仅演示) | SpringBoot+MybatisPlus框架的业务模块微服务，可随意扩展重建，<br>附带feign+config+bus等组件以及LCN分布式事务[参与端]()的演示，<br>整合Redis+MongoDB+RabbitMQ+Elasticsearch中间件的基本使用 |
+| service-order<br> | mall订单微服务(仅演示) | SpringBoot+MybatisPlus框架的业务模块微服务，可随意扩展重建，<br>附带feign+config+bus等组件以及LCN分布式事务[发起端]()的演示，<br>整合Redis+MongoDB+RabbitMQ+Elasticsearch中间件的基本使用 |
+| service-product<br> | mall商品微服务(仅演示) | SpringBoot+MybatisPlus框架的业务模块微服务，可随意扩展重建，<br>附带feign+config+bus等组件以及LCN分布式事务[参与端]()的演示，<br>整合Redis+MongoDB+RabbitMQ+Elasticsearch中间件的基本使用 |
 
 ## 重点框架
 | 名称 | 版本 | 说明 | 
