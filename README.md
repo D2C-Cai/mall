@@ -1,4 +1,8 @@
-#Docker容器中间件部署
+# SpringCloud+SpringBoot+LCN项目骨架
+
+　　SpringCloud（Finchley.RELEASE）+SpringBoot（2.0.7）项目骨架，eureka+config+bus+feign+ribbon+hystrix+zuul等组件支持，MyBatis+Redis+MongoDB+RabbitMQ+Elasticsearch等集群配置，LCN（5.0.0.RC2）分布式事务框架，支持Docker部署
+
+# Docker容器中间件部署
 
 ## Mysql
 
@@ -61,7 +65,7 @@ https://github.com/medcl/elasticsearch-analysis-ik/releases 去这里下载一�
 > docker run -p 5672:5672 -p 15672:15672 --name rabbitmq -v /etc/localtime:/etc/localtime:ro -d rabbitmq:management
 
 
-###下面是我保存的一些镜像
+### 下面是我保存的一些镜像
 
 > 709931138/mall:mysql-5.7
 
@@ -76,79 +80,79 @@ https://github.com/medcl/elasticsearch-analysis-ik/releases 去这里下载一�
 > 709931138/mall:rabbitmq-3.7.8
 
 
-#Service启动后的测试地址
+# Service启动后的测试地址
 
 
 **#erureka-server**
 
-http://192.168.5.20:1001/
+> http://192.168.5.20:1001/
 
 **#config-server**
 
-http://192.168.5.20:2001/service-member-dev.yml
+> http://192.168.5.20:2001/service-member-dev.yml
 
-http://192.168.5.20:2001/service-member-test.yml
+> http://192.168.5.20:2001/service-member-test.yml
 
-http://192.168.5.20:2001/service-member-prd.yml
+> http://192.168.5.20:2001/service-member-prd.yml
 
-http://192.168.5.20:2001/service-product-dev.yml
+> http://192.168.5.20:2001/service-product-dev.yml
 
-http://192.168.5.20:2001/service-product-test.yml
+> http://192.168.5.20:2001/service-product-test.yml
 
-http://192.168.5.20:2001/service-product-prd.yml
+> http://192.168.5.20:2001/service-product-prd.yml
 
-http://192.168.5.20:2001/service-order-dev.yml
+> http://192.168.5.20:2001/service-order-dev.yml
 
-http://192.168.5.20:2001/service-order-test.yml
+> http://192.168.5.20:2001/service-order-test.yml
 
-http://192.168.5.20:2001/service-order-prd.yml
+> http://192.168.5.20:2001/service-order-prd.yml
 
-http://192.168.5.20:2001/actuator/bus-refresh POST
+> http://192.168.5.20:2001/actuator/bus-refresh POST
 
 **#service-member**
 
-http://192.168.5.20:8001/profile
+> http://192.168.5.20:8001/profile
 
-http://192.168.5.20:8001/api/user?username=baicai
+> http://192.168.5.20:8001/api/user?username=baicai
 
-http://192.168.5.20:8001/api/user/cache?username=baicai
+> http://192.168.5.20:8001/api/user/cache?username=baicai
 
-http://192.168.5.20:8001/api/user/mongo?username=baicai
+> http://192.168.5.20:8001/api/user/mongo?username=baicai
 
-http://192.168.5.20:8001/api/user/search?username=baicai
+> http://192.168.5.20:8001/api/user/search?username=baicai
 
 **#service-product**
 
-http://192.168.5.20:8003/profile
+> http://192.168.5.20:8003/profile
 
-http://192.168.5.20:8003/api/product?sn=SN123456
+> http://192.168.5.20:8003/api/product?sn=SN123456
 
-http://192.168.5.20:8003/api/product/cache?sn=SN123456
+> http://192.168.5.20:8003/api/product/cache?sn=SN123456
 
-http://192.168.5.20:8003/api/product/mongo?sn=SN123456
+> http://192.168.5.20:8003/api/product/mongo?sn=SN123456
 
-http://192.168.5.20:8003/api/product/search?sn=SN123456
+> http://192.168.5.20:8003/api/product/search?sn=SN123456
 
 **#service-order**
 
-http://192.168.5.20:8002/profile
+> http://192.168.5.20:8002/profile
 
-http://192.168.5.20:8002/api/order?sn=Q123456
+> http://192.168.5.20:8002/api/order?sn=Q123456
 
-http://192.168.5.20:8002/api/order/cache?sn=Q123456
+> http://192.168.5.20:8002/api/order/cache?sn=Q123456
 
-http://192.168.5.20:8002/api/order/mongo?sn=Q123456
+> http://192.168.5.20:8002/api/order/mongo?sn=Q123456
 
-http://192.168.5.20:8002/api/order/search?sn=Q123456
+> http://192.168.5.20:8002/api/order/search?sn=Q123456
 
-http://192.168.5.20:8002/api/order/tx?sn=Q123456&productId=1&memberId=1
+> http://192.168.5.20:8002/api/order/tx?sn=Q123456&productId=1&memberId=1
 
 **#mall-portal**
 
-http://192.168.5.20:9001/api/find/data?username=baicai&productSn=SN123456&orderSn=Q123456
+> http://192.168.5.20:9001/api/find/data?username=baicai&productSn=SN123456&orderSn=Q123456
 
-http://192.168.5.20:9001/apigateway/member/api/user?username=baicai
+> http://192.168.5.20:9001/apigateway/member/api/user?username=baicai
 
-http://192.168.5.20:9001/apigateway/product/api/product?sn=SN123456
+> http://192.168.5.20:9001/apigateway/product/api/product?sn=SN123456
 
-http://192.168.5.20:9001/apigateway/order/api/order?sn=Q123456
+> http://192.168.5.20:9001/apigateway/order/api/order?sn=Q123456
