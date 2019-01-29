@@ -11,7 +11,7 @@
     <groupId>com.d2c</groupId>
     <artifactId>admin-server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>erureka-server</name>
+    <name>admin-server</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
