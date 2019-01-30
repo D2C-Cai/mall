@@ -1,17 +1,17 @@
 # SpringCloud+SpringBoot+LCN项目骨架
 
 　　SpringCloud（Finchley.RELEASE）+SpringBoot（2.0.7）项目骨架，eureka+config+bus+feign+ribbon+hystrix+zuul等组件支持，MyBatis+Redis+MongoDB+RabbitMQ+Elasticsearch等集群配置，LCN（5.0.0.RC2）分布式事务框架，支持Docker部署。<br>
-　　作者QQ：[709931138]()
+　　作者QQ：[709931138]() 作者邮箱：[709931138@qq.com]()
 
 ## 背景介绍
 　　**骨架项目的精髓：框架流行，版本要新，配置清晰，代码简洁，案例完整。依赖最小化，不拖泥带水，不自以为是。**
 
 ## 环境介绍
 　　此项目适用于有一定开发基础的开发者使用，项目内使用的框架和中间件都是市面上非常流行的，如何搭建环境的教程不作详细介绍，请开发者自行搭建必要的环境。<br>
-　　作者开发电脑局域网IP：192.168.5.20，服务器的局域网IP：192.168.0.146，要保证网络畅通，防火墙配置正确。<br>
-　　这里只给出几点建议：Linux服务器作者选用CentOS版本7，JDK选用1.8，MySql数据库5.6建议直接安装在系统上。一些中间件不论单机或集群请务必安装启动：Redis, Mongodb, Rabbitmq, Elasticsearch。<br>
-　　还有一个[tx-manager]()，需要redis和mysql，这个是LCN分布式事务的管理服务端，5.0以上版本是普通的SpringBoot项目，去官网下载源码，注意修改配置，mvn打包启动就行。<br>
-　　下面给出Docker容器中快捷安装的方案，注意容器时区，以及目录的映射，[命令只是建议，不要照抄]()！
+　　作者开发电脑局域网IP：192.168.5.20，服务器的局域网IP：192.168.0.146，要保证网络畅通，防火墙配置正确。
+这里只给出几点建议：Linux服务器作者选用CentOS版本7，JDK选用1.8，MySql数据库5.6建议直接安装在系统上。一些中间件不论单机或集群请务必安装启动：Redis, Mongodb, Rabbitmq, Elasticsearch。
+还有一个[tx-manager]()，需要redis和mysql，这个是LCN分布式事务的管理服务端，5.0以上版本是普通的SpringBoot项目，去官网下载源码，注意修改配置，mvn打包启动就行。<br>
+　　下面会给出Docker容器中快捷安装的方案，注意容器时区，以及目录的映射，[命令只是建议，不要照抄]()！
 
 
 # 项目简介
@@ -45,6 +45,81 @@
 | Elasticsearch-ik | 5.6.x |
 | Elasticsearch-head | 5 |
 | Rabbitmq | 3.7.8 |
+
+## 整合TX-LCN5.0
+```
+    <dependency>
+        <groupId>com.codingapi.txlcn</groupId>
+        <artifactId>tx-client-springcloud</artifactId>
+        <version>5.0.0.RC2</version>
+    </dependency>
+```
+**解释：**
+这里注意我们用的是 5.0.0.RC2 版本
+```
+    @Configuration
+    @EnableDiscoveryClient
+    @EnableDistributedTransaction
+    public class TransactionConfig {
+    
+    }
+```
+**解释：**
+每个需要的客户端，都加上这两个标签的配置@EnableDiscoveryClient，@EnableDistributedTransaction
+```
+    @FeignClient(name = "service-member", fallback = MemberClientFallback.class)
+    public interface MemberClient {
+    
+        @GetMapping("/api/user/update/{id}")
+        int updatePasswdById(@PathVariable(name = "id") Long id, @RequestParam(value = "password") String password);
+    
+    }
+```
+```
+    @FeignClient(name = "service-product", fallback = ProductClientFallback.class)
+    public interface ProductClient {
+    
+        @GetMapping("/api/product/update/{id}")
+        int updatePriceById(@PathVariable(name = "id") Long id, @RequestParam(value = "price") BigDecimal price);
+    
+    }
+```
+**解释：**
+这里是一个service-order通过FeignClient远程调用service-member和service-product的例子
+```    
+    @Override
+    @LcnTransaction
+    @Transactional
+    public int doSomeThing(String sn, Long productId, Long memberId) {
+        int rs1 = orderMapper.updateAmountBySn(sn, new BigDecimal((int) (Math.random() * 100 + 1)));
+        int rs2 = memberClient.updatePasswdById(memberId, String.valueOf((int) (Math.random() * 100 + 1)));
+        int rs3 = productClient.updatePriceById(productId, new BigDecimal((int) (Math.random() * 100 + 1)));
+        //return rs1 + rs2 + rs3;
+        throw new RuntimeException("doSomeThing更新失败");
+    }
+```
+**解释：**
+这里使用LCN模式，其他模式也类似，发起端@LcnTransaction，propagation默认是REQUIRED
+```
+    @Override
+    @LcnTransaction(propagation = DTXPropagation.SUPPORTS)
+    @Transactional
+    public int updatePasswdById(Long id, String password) {
+        return userMapper.updatePasswdById(id, password);
+    }
+```
+```
+    @Override
+    @LcnTransaction(propagation = DTXPropagation.SUPPORTS)
+    @Transactional
+    public int updatePriceById(Long id, BigDecimal price) {
+        return productMapper.updatePriceById(id, price);
+    }
+
+```
+**解释：**
+这里使用LCN模式，其他模式也类似，参与端@LcnTransaction(propagation = DTXPropagation.SUPPORTS)<br>
+propagation有两种传播属性 REQUIRED（当前没有分布式事务，就创建。当前有分布式事务，就加入），SUPPORTS（当前没有分布式事务，非分布式事务运行。当前有分布式事务，就加入）
 
 
 # Docker容器中间件部署
