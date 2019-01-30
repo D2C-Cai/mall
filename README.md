@@ -47,12 +47,30 @@
 | Rabbitmq | 3.7.8 |
 
 ## 整合TX-LCN5.0
+
+#### 客户端配置
 ```
     <dependency>
         <groupId>com.codingapi.txlcn</groupId>
         <artifactId>tx-client-springcloud</artifactId>
         <version>5.0.0.RC2</version>
     </dependency>
+```
+```
+    # tx-lcn
+    tx-lcn:
+      client:
+        manager-address: 192.168.0.146:8070
+        resource-order: 0
+      logger:
+        enabled: false
+      message:
+        netty:
+          wait-time: 5000
+      springcloud:
+        loadbalance:
+          enabled: true
+
 ```
 **解释：**
 这里注意我们用的是 5.0.0.RC2 版本
@@ -120,6 +138,48 @@
 **解释：**
 这里使用LCN模式，其他模式也类似，参与端@LcnTransaction(propagation = DTXPropagation.SUPPORTS)<br>
 propagation有两种传播属性 REQUIRED（当前没有分布式事务，就创建。当前有分布式事务，就加入），SUPPORTS（当前没有分布式事务，非分布式事务运行。当前有分布式事务，就加入）
+
+#### 服务端配置
+```
+spring.application.name=tx-manager
+server.port=7970
+
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+spring.datasource.url=jdbc:mysql://192.168.0.146:3306/tx-manager?characterEncoding=UTF-8
+spring.datasource.username=root
+spring.datasource.password=123456
+
+mybatis.configuration.map-underscore-to-camel-case=true
+mybatis.configuration.use-generated-keys=true
+
+#tx-lcn.logger.enabled=true
+
+# TxManager Host Ip
+tx-lcn.manager.host=192.168.0.146
+# TxClient连接请求端口
+tx-lcn.manager.port=8070
+# 心跳检测时间(ms)
+tx-lcn.manager.heart-time=15000
+# 分布式事务执行总时间
+tx-lcn.manager.dtx-time=30000
+#参数延迟删除时间单位ms
+tx-lcn.message.netty.attr-delay-time=10000
+
+#tx-lcn.manager.concurrent-level=128
+# 开启日志
+#tx-lcn.logger.enabled=true
+
+#logging.level.com.codingapi=debug
+
+#redisIp
+spring.redis.host=192.168.0.146
+#redis\u7AEF\u53E3
+spring.redis.port=6379
+#redis\u5BC6\u7801
+spring.redis.password=
+```
+**解释：**
+注意服务端需要建立的几个数据库的表，官方代码里有sql脚本，这里不做展示
 
 
 # Docker容器中间件部署
