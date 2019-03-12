@@ -228,6 +228,15 @@ https://github.com/medcl/elasticsearch-analysis-ik/releases 去这里下载一�
 
 > docker run -p 5672:5672 -p 15672:15672 --name rabbitmq -v /etc/localtime:/etc/localtime:ro -d rabbitmq:management
 
+#### Rabbitmq-delayed-message-exchange
+
+https://dl.bintray.com/rabbitmq/community-plugins/3.7.x/rabbitmq_delayed_message_exchange 去这里下载一个版本3.7.x版本的插件，解压到/mnt/docker/rabbitmq
+
+> docker cp /mnt/docker/rabbitmq/rabbitmq_delayed_message_exchange-20171201-3.7.x.ez (容器ID):/plugins
+
+> docker exec -it (容器ID) /bin/bash
+
+> rabbitmq-plugins enable rabbitmq_delayed_message_exchange
 
 #### 下面是我保存的一些镜像
 
