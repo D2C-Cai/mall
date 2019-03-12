@@ -238,6 +238,9 @@ https://dl.bintray.com/rabbitmq/community-plugins/3.7.x/rabbitmq_delayed_message
 
 > rabbitmq-plugins enable rabbitmq_delayed_message_exchange
 
+最后可以查询下插件列表rabbitmq-plugins list，重启下容器即可
+
+
 #### 下面是我保存的一些镜像
 
 > 709931138/mall:redis-3.2
