@@ -228,7 +228,7 @@ https://github.com/medcl/elasticsearch-analysis-ik/releases 去这里下载一�
 
 > docker run -p 5672:5672 -p 15672:15672 --name rabbitmq -v /etc/localtime:/etc/localtime:ro -d rabbitmq:management
 
-#### Rabbitmq-delayed-message-exchange
+#### rabbitmq-delayed-message-exchange
 
 https://dl.bintray.com/rabbitmq/community-plugins/3.7.x/rabbitmq_delayed_message_exchange 去这里下载一个版本3.7.x版本的插件，解压到/mnt/docker/rabbitmq
 
