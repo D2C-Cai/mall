@@ -196,41 +196,15 @@ spring.redis.password=
 
 > docker run -p 27017:27017 --name mongodb -v /etc/localtime:/etc/localtime:ro -v /mnt/docker/mongodb/db:/data/db -d mongo:3.2
 
-## Elasticsearch
-
-vi /etc/sysctl.conf
-
-vm.max_map_count=655360
-
-sysctl -p
-
-> docker pull elasticsearch:5.6.8
-
-> docker run -p 9200:9200 -p 9300:9300 --name elasticsearch -v /etc/localtime:/etc/localtime:ro -v /mnt/docker/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml -v /mnt/docker/elasticsearch/data:/usr/share/elasticsearch/data -v /mnt/docker/elasticsearch/plugins:/usr/share/elasticsearch/plugins -v /mnt/docker/elasticsearch/logs:/usr/share/elasticsearch/logs -d elasticsearch:5.6.8
-
-curl -XPUT http://192.168.0.146:9200/index
-
-curl 'http://192.168.0.146:9200/index/_analyze?analyzer=ik_max_word&pretty=true' -d '{"text":"我们是大数据开发技术人员"}'
-
-#### elasticsearch-ik
-
-https://github.com/medcl/elasticsearch-analysis-ik/releases 去这里下载一个版本5.6.x版本的插件，解压到/mnt/docker/elasticsearch/plugins下重启容器即可
-
-#### elasticsearch-head
-
-> docker pull mobz/elasticsearch-head:5
-
-> docker run -p 9100:9100 --name elasticsearch-head -v /etc/localtime:/etc/localtime:ro -d mobz/elasticsearch-head:5
-
 ## Rabbitmq
 
 > docker pull rabbitmq:management
 
 > docker run -p 5672:5672 -p 15672:15672 --name rabbitmq -v /etc/localtime:/etc/localtime:ro -d rabbitmq:management
 
-#### rabbitmq-delayed-message-exchange
+#### *rabbitmq-delayed-message-exchange
 
-https://dl.bintray.com/rabbitmq/community-plugins/3.7.x/rabbitmq_delayed_message_exchange 去这里下载一个版本3.7.x版本的插件，解压到/mnt/docker/rabbitmq
+https://dl.bintray.com/rabbitmq/community-plugins/3.7.x/rabbitmq_delayed_message_exchange 去这里下载一个版本3.7.x版本的插件，解压到/mnt/docker/rabbitmq，如下方式安装，最后重启容器即可
 
 > docker cp /mnt/docker/rabbitmq/rabbitmq_delayed_message_exchange-20171201-3.7.x.ez (容器ID):/plugins
 
@@ -238,8 +212,62 @@ https://dl.bintray.com/rabbitmq/community-plugins/3.7.x/rabbitmq_delayed_message
 
 > rabbitmq-plugins enable rabbitmq_delayed_message_exchange
 
-最后可以查询下插件列表rabbitmq-plugins list，重启下容器即可
+> rabbitmq-plugins list
 
+> exit
+
+> docker restart (容器ID)
+
+## Elasticsearch
+
+> vi /etc/sysctl.conf
+
+```
+#文件中加入一行
+vm.max_map_count=655360
+```
+> sysctl -p
+
+> docker pull elasticsearch:5.6.8
+
+#### elasticsearch.yml
+
+```
+http.host: 0.0.0.0 
+#集群名称 所有节点要相同 
+cluster.name: "d2cmall-es"
+#本节点名称 
+node.name: master 
+#作为master节点 
+node.master: true 
+#是否存储数据 
+node.data: true 
+# head插件设置 
+http.cors.enabled: true 
+http.cors.allow-origin: "*" 
+#设置可以访问的ip 这里全部设置通过 
+network.bind_host: 0.0.0.0 
+#设置节点 访问的地址 设置master所在机器的ip 
+network.publish_host: 192.168.0.146
+```
+
+> docker run -p 9200:9200 -p 9300:9300 --name elasticsearch -v /etc/localtime:/etc/localtime:ro -v /mnt/docker/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml -v /mnt/docker/elasticsearch/data:/usr/share/elasticsearch/data -v /mnt/docker/elasticsearch/plugins:/usr/share/elasticsearch/plugins -v /mnt/docker/elasticsearch/logs:/usr/share/elasticsearch/logs -d elasticsearch:5.6.8
+
+> curl -XPUT http://192.168.0.146:9200/index
+
+#### *elasticsearch-ik
+
+https://github.com/medcl/elasticsearch-analysis-ik/releases 去这里下载一个版本5.6.x版本的插件，解压到/mnt/docker/elasticsearch/plugins下，最后重启容器即可
+
+> docker restart (容器ID)
+
+> curl 'http://192.168.0.146:9200/index/_analyze?analyzer=ik_max_word&pretty=true' -d '{"text":"我们是大数据开发技术人员"}'
+
+#### *elasticsearch-head
+
+> docker pull mobz/elasticsearch-head:5
+
+> docker run -p 9100:9100 --name elasticsearch-head -v /etc/localtime:/etc/localtime:ro -d mobz/elasticsearch-head:5
 
 #### 下面是我保存的一些镜像
 
