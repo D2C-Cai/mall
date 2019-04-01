@@ -1,7 +1,8 @@
 # SpringCloud+SpringBoot+LCN项目骨架
 
 　　SpringCloud（Finchley.RELEASE）+SpringBoot（2.0.7）项目骨架，eureka+config+bus+feign+ribbon+hystrix+zuul等组件支持，MyBatis+Redis+MongoDB+RabbitMQ+Elasticsearch等集群配置，LCN（5.0.0.RC2）分布式事务框架，支持Docker部署。<br>
-　　作者QQ：[709931138]() 作者邮箱：[709931138@qq.com]()
+　　作者QQ：[709931138]() 作者邮箱：[709931138@qq.com]()<br>
+　　具体业务代码参见：https://github.com/D2C-Cai/shop-mall 支持平滑分布式改造
 
 ## 背景介绍
 　　**骨架项目的精髓：框架流行，版本要新，配置清晰，代码简洁，案例完整。依赖最小化，不拖泥带水，不自以为是。**
