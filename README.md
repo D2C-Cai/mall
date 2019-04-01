@@ -32,7 +32,7 @@
 | ---- | ---- | ---- |
 | SpringCloud | Finchley.RELEASE | 与SpringBoot版本对应 |
 | SpringBoot | 2.0.7 | 与SpringCloud版本对应 |
-| MybatisPlus | 3.0.7.1 | Mybatis升级版，官网：https://mp.baomidou.com <br>用法详见：https://github.com/D2C-Cai/shop |
+| MybatisPlus | 3.0.7.1 | Mybatis升级版，官网：https://mp.baomidou.com <br>用法详见：https://github.com/D2C-Cai/shop-mall |
 | TX-LCN | 5.0.0.RC2 | 高性能的分布式事务解决方案，官网：http://www.txlcn.org/zh-cn |
 
 ## 中间件版本
