@@ -1,5 +1,8 @@
 # SpringCloud+SpringBoot+LCN项目骨架
 
+   [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
+   [![Badge](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu/#/zh_CN)
+
 　　SpringCloud（Finchley.RELEASE）+SpringBoot（2.0.7）项目骨架，eureka+config+bus+feign+ribbon+hystrix+zuul等组件支持，MyBatis+Redis+MongoDB+RabbitMQ+Elasticsearch等集群配置，LCN（5.0.0.RC2）分布式事务框架，支持Docker部署。<br>
 　　作者QQ：[709931138]() 作者邮箱：[709931138@qq.com]()<br>
 　　具体业务代码参见：https://github.com/D2C-Cai/shop-mall 支持平滑分布式改造
@@ -366,3 +369,15 @@ https://github.com/medcl/elasticsearch-analysis-ik/releases 去这里下载一�
 > http://192.168.5.20:9001/apigateway/product/api/product?sn=SN123456
 
 > http://192.168.5.20:9001/apigateway/order/api/order?sn=Q123456
+
+License
+---
+
+[反 996 许可证](LICENSE)
+
+ - 此许可证的目的是阻止违反劳动法的公司使用许可证下的软件或代码，并强迫这些公司权衡他们的行为。
+ - 在此处查看反 996 许可证下的[完整项目列表](awesomelist/projects.md)
+ - 此许可证的灵感来源于 @xushunke：[Design A Software License Of Labor Protection -- 996ICU License](https://github.com/996icu/996.ICU/pull/15642)
+ - 当前版本反 996 许可证由 [伊利诺伊大学法学院的 Katt Gu, J.D](https://scholar.google.com.sg/citations?user=PTcpQwcAAAAJ&hl=en&oi=ao) 起草；由 [Dimension](https://www.dimension.im) 的首席执行官 [Suji Yan](https://www.linkedin.com/in/tedkoyan/) 提供建议。
+ - 该草案改编自 MIT 许可证，如需更多信息请查看 [Wiki](https://github.com/kattgu7/996-License-Draft/wiki)。此许可证旨在与所有主流开源许可证兼容。
+ - 如果你是法律专业人士，或是任何愿意为未来版本做出直接贡献的人，请访问 [Anti-996-License-1.0](https://github.com/kattgu7/996-License-Draft)。感谢你的帮助。
