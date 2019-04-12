@@ -1,6 +1,6 @@
 package com.d2c.product.config.transaction;
 
-import com.codingapi.txlcn.client.config.EnableDistributedTransaction;
+import com.codingapi.txlcn.tc.config.EnableDistributedTransaction;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Configuration;
 

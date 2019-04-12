@@ -58,7 +58,7 @@ spring:
 
   # database
   datasource:
-    url: jdbc:mysql://192.168.0.146:3306/shop?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://192.168.0.146:3306/mall?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
     password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
@@ -78,7 +78,7 @@ spring:
   data:
     # mongodb
     mongodb:
-      uri: mongodb://192.168.0.146:27017/shop
+      uri: mongodb://192.168.0.146:27017/mall
 
     # elasticsearch
     elasticsearch:

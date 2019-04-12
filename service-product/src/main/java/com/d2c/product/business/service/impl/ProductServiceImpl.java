@@ -1,7 +1,7 @@
 package com.d2c.product.business.service.impl;
 
-import com.codingapi.txlcn.commons.annotation.DTXPropagation;
-import com.codingapi.txlcn.commons.annotation.LcnTransaction;
+import com.codingapi.txlcn.tc.annotation.DTXPropagation;
+import com.codingapi.txlcn.tc.annotation.LcnTransaction;
 import com.d2c.product.business.mapper.ProductMapper;
 import com.d2c.product.business.model.Product;
 import com.d2c.product.business.service.ProductService;

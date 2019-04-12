@@ -1,6 +1,6 @@
 package com.d2c.order.business.service.impl;
 
-import com.codingapi.txlcn.commons.annotation.LcnTransaction;
+import com.codingapi.txlcn.tc.annotation.LcnTransaction;
 import com.d2c.order.business.client.MemberClient;
 import com.d2c.order.business.client.ProductClient;
 import com.d2c.order.business.mapper.OrderMapper;
