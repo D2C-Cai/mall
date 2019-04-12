@@ -3,7 +3,7 @@
    [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
    [![Badge](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu/#/zh_CN)
 
-　　SpringCloud（Finchley.RELEASE）+SpringBoot（2.0.7）项目骨架，eureka+config+bus+feign+ribbon+hystrix+zuul等组件支持，MyBatis+Redis+MongoDB+RabbitMQ+Elasticsearch等集群配置，LCN（5.0.0.RC2）分布式事务框架，支持Docker部署。<br>
+　　SpringCloud（Finchley.RELEASE）+SpringBoot（2.0.7）项目骨架，eureka+config+bus+feign+ribbon+hystrix+zuul等组件支持，MyBatis+Redis+MongoDB+RabbitMQ+Elasticsearch等集群配置，LCN（5.0.2.RELEASE）分布式事务框架，支持Docker部署。<br>
 　　作者QQ：[709931138]() 作者邮箱：[709931138@qq.com]()<br>
 　　具体业务代码参见：https://github.com/D2C-Cai/shop-mall 支持平滑分布式改造
 
@@ -37,7 +37,7 @@
 | SpringCloud | Finchley.RELEASE | 与SpringBoot版本对应 |
 | SpringBoot | 2.0.7 | 与SpringCloud版本对应 |
 | MybatisPlus | 3.0.7.1 | Mybatis升级版，官网：https://mp.baomidou.com <br>用法详见：https://github.com/D2C-Cai/shop-mall |
-| TX-LCN | 5.0.0.RC2 | 高性能的分布式事务解决方案，官网：http://www.txlcn.org/zh-cn |
+| TX-LCN | 5.0.2.RELEASE | 高性能的分布式事务解决方案，官网：http://www.txlcn.org/zh-cn |
 
 ## 中间件版本
 | 名称 | 版本 |
@@ -54,11 +54,16 @@
 
 #### 客户端配置
 ```
-    <dependency>
-        <groupId>com.codingapi.txlcn</groupId>
-        <artifactId>tx-client-springcloud</artifactId>
-        <version>5.0.0.RC2</version>
-    </dependency>
+        <dependency>
+            <groupId>com.codingapi.txlcn</groupId>
+            <artifactId>txlcn-tc</artifactId>
+            <version>5.0.2.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.codingapi.txlcn</groupId>
+            <artifactId>txlcn-txmsg-netty</artifactId>
+            <version>5.0.2.RELEASE</version>
+        </dependency>
 ```
 ```
     # tx-lcn
@@ -77,7 +82,7 @@
 
 ```
 **解释：**
-这里注意我们用的是 5.0.0.RC2 版本
+这里注意我们用的是 5.0.2.RELEASE 版本
 ```
     @Configuration
     @EnableDiscoveryClient
