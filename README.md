@@ -161,35 +161,116 @@ spring.datasource.password=123456
 mybatis.configuration.map-underscore-to-camel-case=true
 mybatis.configuration.use-generated-keys=true
 
-#tx-lcn.logger.enabled=true
+spring.redis.host=192.168.0.146
+spring.redis.port=6379
+spring.redis.password=
 
-# TxManager Host Ip
 tx-lcn.manager.host=192.168.0.146
-# TxClient连接请求端口
 tx-lcn.manager.port=8070
+tx-lcn.manager.admin-key=codingapi
+
 # 心跳检测时间(ms)
 tx-lcn.manager.heart-time=15000
-# 分布式事务执行总时间
+# 分布式事务执行总时间(ms)
 tx-lcn.manager.dtx-time=30000
-#参数延迟删除时间单位ms
+# 参数延迟删除时间(ms)
 tx-lcn.message.netty.attr-delay-time=10000
-
+# 事务处理并发等级. 默认为机器逻辑核心数5倍
 #tx-lcn.manager.concurrent-level=128
+
 # 开启日志
 #tx-lcn.logger.enabled=true
-
 #logging.level.com.codingapi=debug
-
-#redisIp
-spring.redis.host=192.168.0.146
-#redis\u7AEF\u53E3
-spring.redis.port=6379
-#redis\u5BC6\u7801
-spring.redis.password=
 ```
 **解释：**
 注意服务端需要建立的几个数据库的表，官方代码里有sql脚本，这里不做展示
 
+#### SpringCloud集群部署下，LCN存在信道问题
+LCN模式，多个同名微服务部署环境下，在事务通知时，存在随机通知其中一个微服务的BUG，而不是定位到真正参与事务的那个微服务。解决方案就是通过ip+port作为标识来区分，需要修改源码如下：<br><br>
+txlcn-tc模块下，增加如下代码，意为SpringBoot2启动阶段获取本项目机器信息：
+```
+package com.codingapi.txlcn.tc.support.listener;
+
+import org.springframework.boot.web.context.WebServerInitializedEvent;
+import org.springframework.context.ApplicationListener;
+import org.springframework.stereotype.Component;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+@Component
+public class ServerConfigListener implements ApplicationListener<WebServerInitializedEvent> {
+
+    private int serverPort;
+
+    public String getServerID() {
+        InetAddress address = null;
+        try {
+            address = InetAddress.getLocalHost();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        return "http://" + address.getHostAddress() + ":" + this.serverPort;
+    }
+
+    @Override
+    public void onApplicationEvent(WebServerInitializedEvent event) {
+        this.serverPort = event.getWebServer().getPort();
+    }
+
+}
+```
+txlcn-tc模块下，增加如下代码，意为扩展ModId的生成方式：
+```
+package com.codingapi.txlcn.tc.support;
+
+import com.codingapi.txlcn.common.util.id.ModIdProvider;
+import com.codingapi.txlcn.tc.support.listener.ServerConfigListener;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class MyModIdProvider implements ModIdProvider {
+
+    @Autowired
+    private ServerConfigListener serverConfig;
+
+    public String getSeverID() {
+        return serverConfig.getServerID();
+    }
+
+    @Override
+    public String modId() {
+        return getSeverID();
+    }
+
+}
+```
+txlcn-txmsg-netty模块下，找到这个类com.codingapi.txlcn.txmsg.netty.bean.SocketManager
+```
+    /**
+     * 获取模块名称
+     *
+     * @param remoteKey 远程唯一标识
+     * @return 模块名称
+     */
+    public String getModuleName(String remoteKey) {
+        AppInfo appInfo = appNames.get(remoteKey);
+        return appInfo == null ? null : appInfo.getAppName(); // 原来的getAppName()
+    }
+```
+```
+    /**
+     * 获取模块名称
+     *
+     * @param remoteKey 远程唯一标识
+     * @return 模块名称
+     */
+    public String getModuleName(String remoteKey) {
+        AppInfo appInfo = appNames.get(remoteKey);
+        return appInfo == null ? null : appInfo.getLabelName(); // 修改为getLabelName()
+    }
+```
 
 # Docker容器中间件部署
 
