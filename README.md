@@ -187,20 +187,21 @@ tx-lcn.message.netty.attr-delay-time=10000
 
 #### SpringCloud集群部署下，LCN存在信道问题
 LCN模式，多个同名微服务部署环境下，在事务通知时，存在随机通知其中一个微服务的BUG，而不是定位到真正参与事务的那个微服务。解决方案就是通过ip+port作为标识来区分，需要修改源码如下：<br><br>
-txlcn-tc模块下，增加如下代码，意为SpringBoot2启动阶段获取本项目机器信息：
+txlcn-tc模块下，增加如下代码，意为扩展ModId的生成方式：
 ```
-package com.codingapi.txlcn.tc.support.listener;
+package com.codingapi.txlcn.tc.support;
 
-import org.springframework.boot.web.context.WebServerInitializedEvent;
-import org.springframework.context.ApplicationListener;
+import com.codingapi.txlcn.common.util.id.ModIdProvider;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 @Component
-public class ServerConfigListener implements ApplicationListener<WebServerInitializedEvent> {
+public class MyModIdProvider implements ModIdProvider {
 
+    @Value("${server.port}")
     private int serverPort;
 
     public String getServerID() {
@@ -214,34 +215,8 @@ public class ServerConfigListener implements ApplicationListener<WebServerInitia
     }
 
     @Override
-    public void onApplicationEvent(WebServerInitializedEvent event) {
-        this.serverPort = event.getWebServer().getPort();
-    }
-
-}
-```
-txlcn-tc模块下，增加如下代码，意为扩展ModId的生成方式：
-```
-package com.codingapi.txlcn.tc.support;
-
-import com.codingapi.txlcn.common.util.id.ModIdProvider;
-import com.codingapi.txlcn.tc.support.listener.ServerConfigListener;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-@Component
-public class MyModIdProvider implements ModIdProvider {
-
-    @Autowired
-    private ServerConfigListener serverConfig;
-
-    public String getSeverID() {
-        return serverConfig.getServerID();
-    }
-
-    @Override
     public String modId() {
-        return getSeverID();
+        return getServerID();
     }
 
 }
